@@ -1,0 +1,14 @@
+// Cloudflare Workers config for citykidbk.com
+// Deployed automatically by Cloudflare Workers Builds when this repo is pushed.
+{
+  "name": "hidden-term-82d3",
+  "compatibility_date": "2026-07-05",
+  "assets": {
+    "directory": "./",
+    "html_handling": "auto-trailing-slash"
+  },
+  "routes": [
+    { "pattern": "citykidbk.com/*", "zone_name": "citykidbk.com" },
+    { "pattern": "www.citykidbk.com/*", "zone_name": "citykidbk.com" }
+  ]
+}
