@@ -2,6 +2,7 @@
 // Deployed automatically by Cloudflare Workers Builds when this repo is pushed.
 {
   "name": "hidden-term-82d3",
+  "main": "worker.js",
   "compatibility_date": "2026-07-05",
   "assets": {
     "directory": "./",
@@ -10,5 +11,12 @@
   "routes": [
     { "pattern": "citykidbk.com/*", "zone_name": "citykidbk.com" },
     { "pattern": "www.citykidbk.com/*", "zone_name": "citykidbk.com" }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "citykid-inbox",
+      "database_id": "0d66722d-98a5-4e32-a11e-2eefad14a703"
+    }
   ]
 }
