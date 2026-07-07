@@ -2,5 +2,8 @@ wrangler.jsonc
 .assetsignore
 README.md
 worker.js
+CLAUDE.md
+.git
+**/.git
 .DS_Store
 **/.DS_Store
