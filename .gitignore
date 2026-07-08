@@ -1,0 +1,7 @@
+.DS_Store
+*.zip
+reference images/
+site/
+.claude/
+efficiency-recommendations.md
+.deploy-token

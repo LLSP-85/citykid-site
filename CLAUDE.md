@@ -1,6 +1,6 @@
-# City Kid — citykidbk.com — Project Handoff
+# City Kid — citykidbk.com — Project Notes
 
-Handoff from Claude Cowork to Claude Code, written July 7 2026. This folder is the working copy of a live website. Read this whole file before changing anything.
+Written July 7 2026 as a Claude Code handoff; updated July 8 2026 — the Claude Code plan was scrapped and the project runs entirely in Claude Cowork. This folder is the working copy of a live website. Read this whole file before changing anything.
 
 ## What this is
 
@@ -19,7 +19,7 @@ City Kid is a free calendar of drop-in toddler classes, library storytimes, and 
 - **GitHub repo: `LLSP-85/citykid-site` (private)** — LL's GitHub account (LLSP-85). Repo root mirrors this folder: `index.html`, `worker.js`, `wrangler.jsonc`, `.assetsignore`, `README.md`.
 - **Every push to `main` auto-deploys** via Cloudflare Workers Builds (`npx wrangler deploy`, ~2 min) to Cloudflare Worker **`hidden-term-82d3`**, which serves the site as static assets on routes `citykidbk.com/*` and `www.citykidbk.com/*`. Routes and D1 binding are declared in `wrangler.jsonc` — don't remove them.
 - `.assetsignore` keeps config files (and this file) from being served publicly. If you add repo files that shouldn't be web-accessible, list them there.
-- **This folder is NOT yet a git checkout.** Recommended first step in Claude Code: make it one (`git init`, add the GitHub remote, fetch, and reconcile — contents currently match `main` exactly except `.assetsignore` and `CLAUDE.md`, which are newer locally and should be committed). After that, publishing = commit + push. That's the whole deploy story.
+- **This folder is deliberately NOT a git checkout** (the Cowork sandbox mount can't delete git's lock files, so `git init` here wedges — tried and cleaned up July 8 2026; don't retry). Publishing works via a throwaway clone instead: a fine-grained GitHub token ("citykid-cowork-publish", scoped to only this repo, Contents read/write) lives in `.deploy-token` at the folder root (gitignored AND assetsignored — never commit or serve it). To publish: `git clone --depth 1` the repo into sandbox `/tmp` using the token in the URL (`https://x-access-token:<TOKEN>@github.com/LLSP-85/citykid-site.git`), copy the changed publishable files from this folder over the clone, commit as `LL <lani.levine@gmail.com>` only if `git status` shows changes, push to `main`. If the token expires, LL makes a new one (github.com → Settings → Developer settings → Fine-grained tokens) and replaces the contents of `.deploy-token`.
 - DNS, domain, and email routing all live in Cloudflare (zone citykidbk.com). Netlify previously hosted the site; it is fully retired — never deploy there.
 
 ## Submissions inbox (email + form)
@@ -32,9 +32,9 @@ City Kid is a free calendar of drop-in toddler classes, library storytimes, and 
 
 ## Automation that already exists (coordinate with it!)
 
-A Claude Cowork scheduled task **"citykid-source-sweep"** runs Tue & Fri ~3 AM ET. Each run: reads the inbox table, re-checks every event source for both months, edits `index.html` IN THIS FOLDER, verifies with jsdom, pushes the whole file to `main` (via a browser-based upload protocol), and reports to LL. Two implications:
+A Claude Cowork scheduled task **"citykid-source-sweep"** runs Tue & Fri ~6 AM ET (on LL's Mac — it needs this folder, so the Mac must be awake). Tuesday is a light run (inbox only); Friday is a full run (inbox + re-check of sources for the next ~3 weeks, with a deep next-month check on the first full run on or after the 20th). It edits `index.html` IN THIS FOLDER, verifies with jsdom, publishes via the git-clone protocol above, and reports to LL. Two implications:
 
-1. This folder's `index.html` is the canonical copy. If you work from a separate git clone and don't sync back here, **the next sweep will clobber your changes** by pushing this folder's version. Work in this folder (as the git checkout) and everything stays consistent.
+1. This folder's `index.html` is the canonical copy. If you work from a separate git clone and don't sync back here, **the next sweep will clobber your changes** by pushing this folder's version. Work in this folder and everything stays consistent.
 2. If you restructure the project (rename files, split index.html, change repo layout), the sweep's instructions and its memory file will be stale — tell LL to mention it in her Cowork "Toddler Schedule" project so the sweep gets updated, or pause the task first.
 
 ## Editorial rules (non-negotiable, from LL)
@@ -52,7 +52,7 @@ One tall VIVID gradient background over the whole page (colors sampled from lani
 
 ## How to verify before deploying
 
-Chrome/browsers can't be pointed at file:// in the Cowork setup, so verification is headless. In Claude Code you can do the same or better:
+Chrome/browsers can't be pointed at file:// in the Cowork setup, so verification is headless, via jsdom in the sandbox (install node_modules in /tmp, not in this folder):
 
 ```
 npx jsdom … # load index.html with runScripts:'dangerously', url https://citykidbk.com/,
@@ -71,4 +71,4 @@ Pass criteria: each month builds a full grid (34 `.cell` divs incl. leading blan
 
 ## People
 
-LL (Lani, lani.levine@gmail.com) owns the project and shares it with local parent groups. Non-engineer but very capable of dashboard clicking and following precise steps. Her husband is joining via this Claude Code tutorial. Keep explanations plain, keep the site fun.
+LL (Lani, lani.levine@gmail.com) owns the project and shares it with local parent groups. Non-engineer but very capable of dashboard clicking and following precise steps. Keep explanations plain, keep the site fun.

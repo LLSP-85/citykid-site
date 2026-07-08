@@ -3,6 +3,8 @@ wrangler.jsonc
 README.md
 worker.js
 CLAUDE.md
+.gitignore
+efficiency-recommendations.md
 .git
 **/.git
 .DS_Store
