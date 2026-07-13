@@ -73,6 +73,12 @@ export default {
         .run();
       return Response.redirect(url.origin + '/?subscribed=1', 303);
     }
+    // Vanity campaign links: citykidbk.com/pp -> /?ref=pp
+    // Any 1-4 letter/number path 302s home with a ref code GoatCounter logs as a campaign.
+    // Static assets are served before this handler, so real files always win.
+    if (request.method === 'GET' && /^\/[a-z0-9]{1,4}$/.test(url.pathname)) {
+      return Response.redirect(url.origin + '/?ref=' + url.pathname.slice(1), 302);
+    }
     return new Response('Not found', { status: 404 });
   },
 };
