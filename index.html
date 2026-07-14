@@ -3,7 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>City Kid — Toddler Classes &amp; Events · Summer Should Be Fun!!</title>
+<title>Toddler Classes &amp; Kids Events in Ditmas Park, Flatbush &amp; Brooklyn | City Kid</title>
+<meta name="description" content="A free calendar of drop-in toddler classes, library storytimes, and park events in Ditmas Park, Flatbush, Kensington, and across Brooklyn. Updated weekly by a local mom.">
+<link rel="canonical" href="https://citykidbk.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://citykidbk.com/">
+<meta property="og:site_name" content="City Kid">
+<meta property="og:title" content="City Kid: Toddler Classes &amp; Events in Ditmas Park &amp; Brooklyn">
+<meta property="og:description" content="Free calendar of drop-in toddler classes, storytimes, and park events around Ditmas Park and Brooklyn. Updated weekly.">
+<meta property="og:image" content="https://citykidbk.com/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="City Kid: Toddler Classes &amp; Events in Ditmas Park &amp; Brooklyn">
+<meta name="twitter:description" content="Free calendar of drop-in toddler classes, storytimes, and park events around Ditmas Park and Brooklyn. Updated weekly.">
+<meta name="twitter:image" content="https://citykidbk.com/og-card.png">
 <link rel="alternate" hreflang="en" href="https://citykidbk.com/">
 <link rel="alternate" hreflang="ht" href="https://citykidbk.com/?lang=ht">
 <link rel="alternate" hreflang="bn" href="https://citykidbk.com/?lang=bn">
@@ -45,6 +59,7 @@
   .m2{color:var(--ink); font-size:clamp(28px,5.5vw,48px); letter-spacing:7px; margin:0 0 8px; line-height:1;}
   .m1{color:var(--ink); font-size:clamp(76px,20vw,180px); line-height:.95; letter-spacing:0; margin:0;}
   .m3{font-family:'Baloo 2','Baloo Da 2',sans-serif; color:var(--ink); font-size:clamp(16px,3.2vw,22px); font-weight:700; letter-spacing:3px; text-transform:uppercase; margin:18px 0 0;}
+  .m4{font-family:'Baloo 2','Baloo Da 2',sans-serif; color:var(--ink); font-size:clamp(14px,2.6vw,17px); font-weight:600; margin:10px 0 0; max-width:560px; line-height:1.45;}
   /* Mini next-month inset (decorative) */
   .mini{border:1px solid var(--ink); padding:8px 10px 9px; flex:none; background:rgba(255,255,255,.35); transition:transform .12s, box-shadow .12s;}
   .mini:hover{transform:translateY(-2px); box-shadow:3px 3px 0 var(--ink);}
@@ -208,6 +223,7 @@
         <div class="m2 display">CITY KID</div>
         <h1 class="m1 display" id="bigmonth">JULY</h1>
         <div class="m3" data-i18n="tagline">Toddler Classes &amp; Events &#183; Summer Should Be Fun!!</div>
+        <p class="m4" data-i18n="intro">A free calendar of drop-in toddler classes, library storytimes, and park &amp; playground events around Ditmas Park, Flatbush, Kensington, and greater Brooklyn. Updated weekly.</p>
       </div>
       <div class="mini" id="minical" role="button" tabindex="0" title="Switch month" style="cursor:pointer">
         <div class="mini-t" id="mini-t">AUG</div>
@@ -330,8 +346,9 @@
 <script>
 /* ---------- i18n: UI shell only; event data stays in English ---------- */
 const I18N={
-en:{title:'City Kid — Toddler Classes & Events · Summer Should Be Fun!!',
+en:{title:'Toddler Classes & Kids Events in Ditmas Park, Flatbush & Brooklyn | City Kid',
  tagline:'Toddler Classes &amp; Events &#183; Summer Should Be Fun!!', eyebrow:'Brooklyn · Ditmas Park &amp; nearby',
+ intro:'A free calendar of drop-in toddler classes, library storytimes, and park &amp; playground events around Ditmas Park, Flatbush, Kensington, and greater Brooklyn. Updated weekly.',
  month:'Month', week:'Week', anyPrice:'Any price', free:'Free', u25:'$25 &amp; Under', all:'All',
  myCal:'My Calendar', share:'Share', ics:'Add to my phone (.ics)', list:'List', map:'Map',
  legend:{class:'Classes',lib:'Library',garden:'Parks & gardens',museum:'Museums',music:'Music'},
@@ -356,8 +373,9 @@ en:{title:'City Kid — Toddler Classes & Events · Summer Should Be Fun!!',
  dowFull:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
  dowAbbr:['SUN','MON','TUE','WED','THU','FRI','SAT'], dowLetters:['S','M','T','W','T','F','S'],
  dtitle:function(dow,d,mon){return dow+', '+mon+' '+d;}},
-ht:{title:'City Kid — Klas ak Aktivite pou Timoun Piti nan Brooklyn',
+ht:{title:'Klas ak Aktivite pou Timoun Piti nan Ditmas Park, Flatbush ak Brooklyn | City Kid',
  tagline:'Klas ak Aktivite pou Timoun Piti &#183; Ete a fèt pou plezi!!', eyebrow:'Brooklyn · Ditmas Park ak zòn ki toupre yo',
+ intro:'Yon kalandriye gratis pou klas timoun piti, lè istwa nan bibliyotèk, ak aktivite nan pak yo &#8212; nan Ditmas Park, Flatbush, Kensington, ak tout Brooklyn. Mizajou chak semèn.',
  month:'Mwa', week:'Semèn', anyPrice:'Nenpòt pri', free:'Gratis', u25:'$25 oswa mwens', all:'Tout',
  myCal:'Kalandriye Mwen', share:'Pataje', ics:'Sove nan telefòn mwen (.ics)', list:'Lis', map:'Kat',
  legend:{class:'Klas',lib:'Bibliyotèk',garden:'Pak ak jaden',museum:'Mize',music:'Mizik'},
@@ -382,8 +400,9 @@ ht:{title:'City Kid — Klas ak Aktivite pou Timoun Piti nan Brooklyn',
  dowFull:['dimanch','lendi','madi','mèkredi','jedi','vandredi','samdi'],
  dowAbbr:['DIM','LEN','MAD','MÈK','JED','VAN','SAM'], dowLetters:['D','L','M','M','J','V','S'],
  dtitle:function(dow,d,mon){return dow+' '+d+' '+mon;}},
-bn:{title:'City Kid — ব্রুকলিনে ছোটদের ক্লাস ও ইভেন্ট',
+bn:{title:'ডিটমাস পার্ক, ফ্ল্যাটবুশ ও ব্রুকলিনে ছোটদের ক্লাস ও ইভেন্ট | City Kid',
  tagline:'ছোটদের ক্লাস ও ইভেন্ট &#183; গ্রীষ্ম হোক মজার!!', eyebrow:'ব্রুকলিন · ডিটমাস পার্ক ও আশেপাশে',
+ intro:'ডিটমাস পার্ক, ফ্ল্যাটবুশ, কেনসিংটন ও ব্রুকলিন জুড়ে ছোটদের ড্রপ-ইন ক্লাস, লাইব্রেরির স্টোরিটাইম ও পার্কের ইভেন্টের একটি ফ্রি ক্যালেন্ডার। প্রতি সপ্তাহে আপডেট হয়।',
  month:'মাস', week:'সপ্তাহ', anyPrice:'যেকোনো দাম', free:'ফ্রি', u25:'$25 বা কম', all:'সব',
  myCal:'আমার ক্যালেন্ডার', share:'শেয়ার', ics:'ফোনে সেভ করুন (.ics)', list:'তালিকা', map:'ম্যাপ',
  legend:{class:'ক্লাস',lib:'লাইব্রেরি',garden:'পার্ক ও বাগান',museum:'জাদুঘর',music:'গান'},
@@ -408,8 +427,9 @@ bn:{title:'City Kid — ব্রুকলিনে ছোটদের ক্ল
  dowFull:['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'],
  dowAbbr:['রবি','সোম','মঙ্গল','বুধ','বৃহঃ','শুক্র','শনি'], dowLetters:['র','সো','ম','বু','বৃ','শু','শ'],
  dtitle:function(dow,d,mon){return dow+', '+d+' '+mon;}},
-es:{title:'City Kid — Clases y eventos para peques en Brooklyn',
+es:{title:'Clases y eventos para peques en Ditmas Park, Flatbush y Brooklyn | City Kid',
  tagline:'Clases y Eventos para Peques &#183; ¡¡El verano es para divertirse!!', eyebrow:'Brooklyn · Ditmas Park y alrededores',
+ intro:'Un calendario local gratuito de clases para peques sin inscripción previa, cuentacuentos en bibliotecas y eventos en parques por Ditmas Park, Flatbush, Kensington y todo Brooklyn. Se actualiza cada semana.',
  month:'Mes', week:'Semana', anyPrice:'Cualquier precio', free:'Gratis', u25:'$25 o menos', all:'Todos',
  myCal:'Mi calendario', share:'Compartir', ics:'Guardar en mi teléfono (.ics)', list:'Lista', map:'Mapa',
  legend:{class:'Clases',lib:'Biblioteca',garden:'Parques y jardines',museum:'Museos',music:'Música'},
@@ -1016,6 +1036,76 @@ if(sun) sun.addEventListener('animationend', function(ev){ if(ev.animationName==
 applyLang();
 const startMonth=(REAL_Y===2026&&(REAL_M===MIN_MONTH||REAL_M===MAX_MONTH))?REAL_M:MIN_MONTH;
 loadMonth(startMonth);
+
+/* ---------- SEO: schema.org Event JSON-LD, derived from the live calendar data ----------
+   Reads the same MONTHS arrays the calendar renders from, so it stays correct
+   whenever events are added or edited. Emits today-and-future events only. */
+(function(){
+ try{
+  const pad=function(n){return String(n).padStart(2,'0');};
+  const now=new Date(); const todayKey=now.getFullYear()*10000+(now.getMonth()+1)*100+now.getDate();
+  function startISO(y,m,day,tm){
+    const mt=(tm||'').match(/(\d{1,2}):(\d{2})\s*(AM|PM)?/i);
+    const base=y+'-'+pad(m+1)+'-'+pad(day);
+    if(!mt) return base;
+    let h=+mt[1]; const min=mt[2];
+    let mer=mt[3]; if(!mer){ const anyMer=(tm.match(/AM|PM/i)||[])[0]; mer=anyMer; }
+    if(mer&&/PM/i.test(mer)&&h<12) h+=12; if(mer&&/AM/i.test(mer)&&h===12) h=0;
+    return base+'T'+pad(h)+':'+min+':00-04:00';
+  }
+  function offer(cost,link){
+    if(!cost) return null;
+    if(/free/i.test(cost)) return {'@type':'Offer','price':'0','priceCurrency':'USD','url':link||'https://citykidbk.com/'};
+    const m=cost.match(/\$(\d+(?:\.\d{2})?)/);
+    if(m) return {'@type':'Offer','price':m[1],'priceCurrency':'USD','url':link||'https://citykidbk.com/'};
+    return null;
+  }
+  function place(l,b){
+    const p={'@type':'Place','name':l,
+      'address':{'@type':'PostalAddress','addressLocality':(b==='mn'?'New York':'Brooklyn'),'addressRegion':'NY','addressCountry':'US'}};
+    const g=geo(l); if(g) p.geo={'@type':'GeoCoordinates','latitude':g[1],'longitude':g[2]};
+    return p;
+  }
+  function evLD(y,m,day,e){
+    const o={'@context':'https://schema.org','@type':'Event',
+      'name':e.t,
+      'startDate':startISO(y,m,day,e.tm),
+      'eventAttendanceMode':'https://schema.org/OfflineEventAttendanceMode',
+      'eventStatus':'https://schema.org/EventScheduled',
+      'location':place(e.l,e.b),
+      'image':['https://citykidbk.com/og-card.png'],
+      'organizer':{'@type':'Organization','name':e.l.split('·')[0].trim(),'url':e.link||'https://citykidbk.com/'},
+      'performer':{'@type':'Organization','name':e.l.split('·')[0].trim()}};
+    if(e.link) o.url=e.link;
+    if(e.note) o.description=e.note;
+    if(e.ages) o.typicalAgeRange=e.ages;
+    const of=offer(e.cost,e.link); if(of) o.offers=of;
+    return o;
+  }
+  const out=[];
+  for(const mk in MONTHS){
+    const m=+mk, y=MONTHS[mk].y;
+    MONTHS[mk].other.forEach(function(e){
+      (e.d||[]).forEach(function(day){
+        if(y*10000+(m+1)*100+day>=todayKey) out.push(evLD(y,m,day,e));
+      });
+    });
+    MONTHS[mk].lib.forEach(function(r){
+      const e={t:r[0],l:r[1],tm:r[2],cost:'Free',link:LNK.bpl};
+      String(r[6]).split(',').forEach(function(dstr){
+        const day=+dstr;
+        if(day&&y*10000+(m+1)*100+day>=todayKey) out.push(evLD(y,m,day,e));
+      });
+    });
+  }
+  if(out.length){
+    const s=document.createElement('script');
+    s.type='application/ld+json';
+    s.textContent=JSON.stringify(out);
+    document.head.appendChild(s);
+  }
+ }catch(e){ /* SEO markup must never break the calendar */ }
+})();
 
 /* Thank-you toast after form submit (worker redirects to /?submitted=1) */
 if(new URLSearchParams(location.search).get('submitted')==='1'){
