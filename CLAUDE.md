@@ -61,6 +61,15 @@ npx jsdom … # load index.html with runScripts:'dangerously', url https://cityk
 
 Pass criteria: each month builds a full grid (34 `.cell` divs incl. leading blanks, 31 `.dnum`), zero console errors, every event's location resolves via `geo()`. After deploying, confirm the live site renders both months and the Worker's `modified_on` updated.
 
+## SEO layer (added July 14 2026 — preserve all of it when editing)
+
+- Head of index.html: keyword-first `<title>`, meta description, canonical, Open Graph + Twitter tags pointing at `og-card.png`. The I18N table's per-language `title` strings are also keyword-first (applyLang overwrites document.title, so both places matter).
+- Visible intro paragraph `.m4` with `data-i18n="intro"` in the masthead, translated in all four I18N blocks. It's a ranking signal; don't remove it.
+- **JSON-LD Event generator**: an IIFE near the bottom of the main script (comment "SEO: schema.org Event JSON-LD") derives schema.org Event markup from MONTHS + GEO + LNK at load time, today-and-future events only. It self-updates when events are added — no maintenance needed, but NEVER delete the block. It assumes lib rows keep the [t,l,tm,a,reg,virt,days] shape and other events keep t/l/tm/d/cost/ages/link/note/b fields; if those shapes change, update the generator too.
+- Static files at repo/folder root, all deploy as assets: `sitemap.xml`, `robots.txt` (carries the `Sitemap:` directive; Cloudflare prepends its managed content-signal block on top — that's expected), `og-card.png` (1200x630 social card).
+- Google Search Console: setup pending as of July 14 2026 (needs LL's Google login). Once verified, submit sitemap.xml and request indexing after major content changes.
+- Phase 2 (not built): per-neighborhood/per-category landing pages, to be designed from Search Console query data ~4-6 weeks after GSC setup.
+
 ## Known quirks & open items
 
 - Sawyer (hisawyer.com) class pages are client-rendered — fetch the rendered DOM, not raw HTML.
