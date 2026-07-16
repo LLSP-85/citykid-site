@@ -1054,20 +1054,36 @@ loadMonth(startMonth);
  try{
   const pad=function(n){return String(n).padStart(2,'0');};
   const now=new Date(); const todayKey=now.getFullYear()*10000+(now.getMonth()+1)*100+now.getDate();
-  function startISO(y,m,day,tm){
-    const mt=(tm||'').match(/(\d{1,2}):(\d{2})\s*(AM|PM)?/i);
+  const todayISO=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
+  function tzoff(m){ return (m>=2&&m<=10)?'-04:00':'-05:00'; } /* rough EDT/EST by month */
+  /* Parse "10:30 AM–12:30 PM", "9:30–10:15 & 11:00–11:45 AM", "10:00 AM" → {start,end} ISO datetimes.
+     End defaults to start + 1h when the source gives no end time (approximation, flagged nowhere visible). */
+  function timesISO(y,m,day,tm){
     const base=y+'-'+pad(m+1)+'-'+pad(day);
-    if(!mt) return base;
-    let h=+mt[1]; const min=mt[2];
-    let mer=mt[3]; if(!mer){ const anyMer=(tm.match(/AM|PM/i)||[])[0]; mer=anyMer; }
-    if(mer&&/PM/i.test(mer)&&h<12) h+=12; if(mer&&/AM/i.test(mer)&&h===12) h=0;
-    return base+'T'+pad(h)+':'+min+':00-04:00';
+    const seg=String(tm||'').split('&')[0];
+    const toks=[]; const re=/(\d{1,2}):(\d{2})\s*(AM|PM)?/gi; let mt;
+    while((mt=re.exec(seg))&&toks.length<2) toks.push({h:+mt[1],min:mt[2],mer:mt[3]||null});
+    if(!toks.length) return {start:base,end:null};
+    const lastMer=(seg.match(/AM|PM/gi)||[]).pop()||null;
+    const conv=function(t){ let h=t.h; const mer=t.mer||lastMer;
+      if(mer&&/PM/i.test(mer)&&h<12) h+=12; if(mer&&/AM/i.test(mer)&&h===12) h=0; return {h:h,min:t.min}; };
+    const s=conv(toks[0]); let e=toks.length>1?conv(toks[1]):null;
+    let sMin=s.h*60+(+s.min);
+    if(e){ const eMin=e.h*60+(+e.min);
+      if(eMin<=sMin){ /* e.g. "11:00–1:00 PM": start wrongly bumped to PM */
+        if(s.h>=13&&(s.h-12)*60+(+s.min)<eMin){ s.h-=12; sMin=s.h*60+(+s.min); } else { e=null; } } }
+    if(!e){ const t=sMin+60; e={h:Math.min(23,Math.floor(t/60)),min:pad(t%60)}; }
+    const off=tzoff(m);
+    return {start:base+'T'+pad(s.h)+':'+s.min+':00'+off, end:base+'T'+pad(e.h)+':'+e.min+':00'+off};
   }
   function offer(cost,link){
-    if(!cost) return null;
-    if(/free/i.test(cost)) return {'@type':'Offer','price':'0','priceCurrency':'USD','url':link||'https://citykidbk.com/'};
-    const m=cost.match(/\$(\d+(?:\.\d{2})?)/);
-    if(m) return {'@type':'Offer','price':m[1],'priceCurrency':'USD','url':link||'https://citykidbk.com/'};
+    const o={'@type':'Offer','priceCurrency':'USD','url':link||'https://citykidbk.com/',
+      'availability':'https://schema.org/InStock','validFrom':todayISO};
+    if(cost){
+      const m=String(cost).match(/\$(\d+(?:\.\d{2})?)/);
+      if(m){ o.price=m[1]; return o; }
+      if(/free|included/i.test(cost)){ o.price='0'; return o; }
+    }
     return null;
   }
   function place(l,b){
@@ -1077,17 +1093,19 @@ loadMonth(startMonth);
     return p;
   }
   function evLD(y,m,day,e){
+    const ts=timesISO(y,m,day,e.tm);
     const o={'@context':'https://schema.org','@type':'Event',
       'name':e.t,
-      'startDate':startISO(y,m,day,e.tm),
+      'startDate':ts.start,
       'eventAttendanceMode':'https://schema.org/OfflineEventAttendanceMode',
       'eventStatus':'https://schema.org/EventScheduled',
       'location':place(e.l,e.b),
       'image':['https://citykidbk.com/og-card.png'],
       'organizer':{'@type':'Organization','name':e.l.split('·')[0].trim(),'url':e.link||'https://citykidbk.com/'},
       'performer':{'@type':'Organization','name':e.l.split('·')[0].trim()}};
+    if(ts.end) o.endDate=ts.end;
     if(e.link) o.url=e.link;
-    if(e.note) o.description=e.note;
+    o.description=e.note||(e.t+' at '+e.l+' ('+e.tm+')'+(e.ages?', ages '+e.ages:'')+'. Full details and map on the City Kid calendar.');
     if(e.ages) o.typicalAgeRange=e.ages;
     const of=offer(e.cost,e.link); if(of) o.offers=of;
     return o;
