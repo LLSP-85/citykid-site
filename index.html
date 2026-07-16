@@ -117,16 +117,26 @@
   .detail h3{margin:0 0 14px; font-size:28px; letter-spacing:.5px;}
   .ev{border:2px solid var(--ink); border-left:10px solid var(--ink); border-radius:0; padding:14px 17px; margin-bottom:14px; background:#fff; box-shadow:3px 3px 0 var(--ink);}
   .ev .top{display:flex; align-items:baseline; gap:10px; margin-bottom:1px;}
-  .ev .loc-big{font-family:'Baloo 2','Baloo Da 2',sans-serif; font-weight:800; font-size:24px; line-height:1.15; color:var(--ink);}
+  .ev .ttl{font-family:'Baloo 2','Baloo Da 2',sans-serif; font-weight:800; font-size:clamp(19px,4.5vw,23px); line-height:1.15; color:var(--ink);}
+  .ev .venueline{font-family:'Baloo 2','Baloo Da 2',sans-serif; font-size:15px; font-weight:700; color:var(--muted); margin:2px 0 10px;}
+  .ev .venueline a{font-size:15px; font-weight:800; text-transform:none; letter-spacing:0; color:var(--ink);}
+  .ev .venueline .rest{font-size:13.5px; font-weight:600;}
   .ev .time{margin-left:auto; font-family:'Baloo 2','Baloo Da 2',sans-serif; font-size:13px; font-weight:700; color:var(--ink); white-space:nowrap;}
-  .ev .ev-name{font-size:18px; color:var(--muted); font-weight:600; margin-bottom:12px;}
   .ev .tags{display:flex; flex-wrap:wrap; gap:8px; margin:4px 0 10px;}
   .bubble{display:inline-flex; align-items:center; gap:6px; font-family:'Baloo 2','Baloo Da 2',sans-serif; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; padding:6px 10px 5px; border-radius:0; background:var(--bub); color:var(--bt,#fff); border:1px solid var(--ink);}
   .bubble .st{font-size:11px; line-height:1;}
+  .chip{display:inline-flex; align-items:center; font-family:'Baloo 2','Baloo Da 2',sans-serif; font-size:12.5px; font-weight:800; text-transform:uppercase; letter-spacing:.5px; padding:5px 9px 4px; border:1.5px solid var(--ink); border-radius:0;}
+  .chip.price{background:#FFC93C; color:#6B4A00;}
+  .chip.act{background:#fff; color:var(--ink);}
+  .chip.age{color:#fff;}
+  .morebtn{border:none; background:none; font-family:'Baloo 2','Baloo Da 2',sans-serif; font-size:12.5px; font-weight:800; text-transform:uppercase; letter-spacing:.5px; color:var(--ink); padding:2px 0 0; cursor:pointer; text-decoration:underline; display:block;}
   .ev .top svg, .lg svg, .dots svg{display:block; flex:none;}
   .ev a{font-family:'Baloo 2','Baloo Da 2',sans-serif; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; text-decoration:none;}
   .ev a:hover{text-decoration:underline;}
-  .flag{font-size:15px; color:var(--class-tx); margin-top:9px; font-weight:500;}
+  .flag{font-size:14.5px; color:var(--muted); margin-top:9px; font-weight:500;}
+  .flag.clamp{display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;}
+  .flag.open{display:block; -webkit-line-clamp:unset;}
+  .alertline{font-size:14.5px; color:var(--class-tx); margin-top:9px; font-weight:700;}
   .empty{color:var(--ink); opacity:.75; font-size:17px;}
   /* Detail header + map */
   .dhead{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:14px;}
@@ -349,6 +359,8 @@ const I18N={
 en:{title:'Toddler Classes & Kids Events in Ditmas Park, Flatbush & Brooklyn | City Kid',
  tagline:'Toddler Classes &amp; Events &#183; Summer Should Be Fun!!', eyebrow:'Brooklyn · Ditmas Park &amp; nearby',
  intro:'A free calendar of drop-in toddler classes, library storytimes, and park &amp; playground events around Ditmas Park, Flatbush, Kensington, and greater Brooklyn. Updated weekly.',
+ chips:{free:'Free',freeTrial:'Free trial',admission:'W/ admission',members:'Members',dropin:'Drop-in',register:'Register',rsvp:'RSVP'},
+ noteMore:'more', noteLess:'less',
  month:'Month', week:'Week', anyPrice:'Any price', free:'Free', u25:'$25 &amp; Under', all:'All',
  myCal:'My Calendar', share:'Share', ics:'Add to my phone (.ics)', list:'List', map:'Map',
  legend:{class:'Classes',lib:'Library',garden:'Parks & gardens',museum:'Museums',music:'Music'},
@@ -376,6 +388,8 @@ en:{title:'Toddler Classes & Kids Events in Ditmas Park, Flatbush & Brooklyn | C
 ht:{title:'Klas ak Aktivite pou Timoun Piti nan Ditmas Park, Flatbush ak Brooklyn | City Kid',
  tagline:'Klas ak Aktivite pou Timoun Piti &#183; Ete a fèt pou plezi!!', eyebrow:'Brooklyn · Ditmas Park ak zòn ki toupre yo',
  intro:'Yon kalandriye gratis pou klas timoun piti, lè istwa nan bibliyotèk, ak aktivite nan pak yo &#8212; nan Ditmas Park, Flatbush, Kensington, ak tout Brooklyn. Mizajou chak semèn.',
+ chips:{free:'Gratis',freeTrial:'Esè gratis',admission:'Ak antre',members:'Pou manm',dropin:'Antre lib',register:'Enskri',rsvp:'Rezève'},
+ noteMore:'plis', noteLess:'mwens',
  month:'Mwa', week:'Semèn', anyPrice:'Nenpòt pri', free:'Gratis', u25:'$25 oswa mwens', all:'Tout',
  myCal:'Kalandriye Mwen', share:'Pataje', ics:'Sove nan telefòn mwen (.ics)', list:'Lis', map:'Kat',
  legend:{class:'Klas',lib:'Bibliyotèk',garden:'Pak ak jaden',museum:'Mize',music:'Mizik'},
@@ -403,6 +417,8 @@ ht:{title:'Klas ak Aktivite pou Timoun Piti nan Ditmas Park, Flatbush ak Brookly
 bn:{title:'ডিটমাস পার্ক, ফ্ল্যাটবুশ ও ব্রুকলিনে ছোটদের ক্লাস ও ইভেন্ট | City Kid',
  tagline:'ছোটদের ক্লাস ও ইভেন্ট &#183; গ্রীষ্ম হোক মজার!!', eyebrow:'ব্রুকলিন · ডিটমাস পার্ক ও আশেপাশে',
  intro:'ডিটমাস পার্ক, ফ্ল্যাটবুশ, কেনসিংটন ও ব্রুকলিন জুড়ে ছোটদের ড্রপ-ইন ক্লাস, লাইব্রেরির স্টোরিটাইম ও পার্কের ইভেন্টের একটি ফ্রি ক্যালেন্ডার। প্রতি সপ্তাহে আপডেট হয়।',
+ chips:{free:'ফ্রি',freeTrial:'ফ্রি ট্রায়াল',admission:'টিকিটসহ ফ্রি',members:'সদস্যদের জন্য',dropin:'ড্রপ-ইন',register:'রেজিস্টার',rsvp:'রিজার্ভ'},
+ noteMore:'আরও', noteLess:'কম',
  month:'মাস', week:'সপ্তাহ', anyPrice:'যেকোনো দাম', free:'ফ্রি', u25:'$25 বা কম', all:'সব',
  myCal:'আমার ক্যালেন্ডার', share:'শেয়ার', ics:'ফোনে সেভ করুন (.ics)', list:'তালিকা', map:'ম্যাপ',
  legend:{class:'ক্লাস',lib:'লাইব্রেরি',garden:'পার্ক ও বাগান',museum:'জাদুঘর',music:'গান'},
@@ -430,6 +446,8 @@ bn:{title:'ডিটমাস পার্ক, ফ্ল্যাটবুশ �
 es:{title:'Clases y eventos para peques en Ditmas Park, Flatbush y Brooklyn | City Kid',
  tagline:'Clases y Eventos para Peques &#183; ¡¡El verano es para divertirse!!', eyebrow:'Brooklyn · Ditmas Park y alrededores',
  intro:'Un calendario local gratuito de clases para peques sin inscripción previa, cuentacuentos en bibliotecas y eventos en parques por Ditmas Park, Flatbush, Kensington y todo Brooklyn. Se actualiza cada semana.',
+ chips:{free:'Gratis',freeTrial:'Prueba gratis',admission:'Con entrada',members:'Socios',dropin:'Sin cita',register:'Inscripción',rsvp:'Reservar'},
+ noteMore:'más', noteLess:'menos',
  month:'Mes', week:'Semana', anyPrice:'Cualquier precio', free:'Gratis', u25:'$25 o menos', all:'Todos',
  myCal:'Mi calendario', share:'Compartir', ics:'Guardar en mi teléfono (.ics)', list:'Lista', map:'Mapa',
  legend:{class:'Clases',lib:'Biblioteca',garden:'Parques y jardines',museum:'Museos',music:'Música'},
@@ -897,25 +915,53 @@ function renderDetail(day){
   mapwrap.style.display='none'; detail.style.display='block';
   let h='';
   if(!evs.length){ h+='<div class="empty">'+S.empty+'</div>'; }
-  else evs.forEach(e=>{
+  else evs.forEach((e,i)=>{
     const c=CAT[e.c];
-    const bub=function(label,fill,shadow,txt){ return '<span class="bubble" style="--bub:'+fill+';--sh:'+shadow+';--bt:'+(txt||'#fff')+'"><span class="st">&#9733;</span>'+label+'</span>'; };
     h+='<div class="ev" style="border-left-color:'+c.bd+'">';
-    const loc=e.link?'<a class="loc-big" href="'+e.link+'" target="_blank" rel="noopener">'+e.l+'</a>':'<span class="loc-big">'+e.l+'</span>';
-    h+='<div class="top">'+icon(e.c,28)+loc+'<span class="time">'+e.tm+'</span><button class="heart'+(HEARTS.has(e.id)?' on':'')+'" data-id="'+e.id+'" aria-label="'+S.saveHeart+'" title="'+S.saveHeart+'">&#9829;</button></div>';
-    h+='<div class="ev-name">'+e.t+(e.tent?' *':'')+'</div>';
+    h+='<div class="top">'+icon(e.c,28)+'<span class="ttl">'+e.t+(e.tent?' *':'')+'</span><span class="time">'+e.tm+'</span><button class="heart'+(HEARTS.has(e.id)?' on':'')+'" data-id="'+e.id+'" aria-label="'+S.saveHeart+'" title="'+S.saveHeart+'">&#9829;</button></div>';
+    /* venue line: bold name before the first '·', the rest small and muted */
+    const vp=String(e.l).split('·'); const vname=vp[0].trim(); const vrest=vp.slice(1).join('·').trim();
+    const vlink=e.link?'<a href="'+e.link+'" target="_blank" rel="noopener">'+vname+'</a>':'<span style="font-weight:800;color:var(--ink)">'+vname+'</span>';
+    h+='<div class="venueline">'+vlink+(vrest?' <span class="rest">· '+vrest+'</span>':'')+'</div>';
     h+='<div class="tags">';
+    const ch=chipsFor(e);
+    if(ch.price) h+='<span class="chip price">'+ch.price+'</span>';
+    if(ch.act) h+='<span class="chip act">'+ch.act+'</span>';
     const ag=e.ages||(e.c==='lib'?(e.a==='u5'?S.birth5:S.kids):null);
-    if(ag) h+=bub(ag, c.bd, SH[e.c], '#fff');
-    if(e.cost) h+=bub(e.cost, '#FFC93C', '#E7A21A', '#6B4A00');
-    if(e.reg) h+=bub(S.rsvp, '#FFC93C', '#E7A21A', '#6B4A00');
+    if(ag) h+='<span class="chip age" style="background:'+c.bd+'">'+ag+'</span>';
     h+='</div>';
     if(e.link) h+='<a href="'+e.link+'" target="_blank" rel="noopener" style="color:'+c.tx+'">'+S.moreInfo+'</a>';
     h+=' <button class="addcal" data-id="'+e.id+'" data-day="'+day+'">'+S.addCal+'</button>';
-    if(e.note) h+='<div class="flag">'+e.note+'</div>';
+    if(e.alert) h+='<div class="alertline">'+e.alert+'</div>';
+    const noteTxt=(ch.extra?ch.extra+' — ':'')+(e.note||'');
+    if(noteTxt.trim()) h+='<div class="flag clamp" id="nt-'+day+'-'+i+'">'+noteTxt+'</div><button class="morebtn" data-note="nt-'+day+'-'+i+'" style="display:none">'+S.noteMore+'</button>';
     h+='</div>';
   });
   detail.innerHTML=h;
+  /* show more/less only where the note actually overflows its 2-line clamp */
+  detail.querySelectorAll('.morebtn').forEach(function(b){
+    const n=document.getElementById(b.dataset.note);
+    if(n&&n.scrollHeight>n.clientHeight+2) b.style.display='block';
+    b.onclick=function(){ n.classList.toggle('open'); b.textContent=n.classList.contains('open')?S.noteLess:S.noteMore; };
+  });
+}
+/* Normalize the free-form cost string into uniform chips; anything lost becomes `extra`, prepended to the note. */
+function chipsFor(e){
+  const cost=String(e.cost||''); const CH=S.chips;
+  let price=null, act=null;
+  const m=cost.match(/\$(\d+(?:\.\d{2})?)/);
+  if(m) price='$'+m[1];
+  else if(/free trial/i.test(cost)) price=CH.freeTrial;
+  else if(/included|w(ith|\/)? ?admission/i.test(cost)) price=CH.admission;
+  else if(/free/i.test(cost)) price=CH.free;
+  if(/drop-? ?in/i.test(cost)) act=CH.dropin;
+  else if(/rsvp/i.test(cost)) act=CH.rsvp;
+  else if(/member/i.test(cost)) act=CH.members;
+  else if(/regist|reserve|sign.? ?up|booking|semester/i.test(cost)||e.reg) act=CH.register;
+  else if(e.c==='lib') act=CH.dropin;
+  /* keep nuance ("$80 5-class pack", "free trial offer") by carrying the raw string into the note when it says more than the chips do */
+  const extra=(/\(|;|pack|semester|bundle|trial/i.test(cost))?cost:null;
+  return {price:price, act:act, extra:extra};
 }
 function render(){
   const week=state.cal==='week';
@@ -974,6 +1020,8 @@ function setLang(l){
   LANG=l; S=I18N[l];
   try{ localStorage.setItem('ck_lang',l); }catch(e){}
   try{ const u=new URL(location.href); if(l==='en') u.searchParams.delete('lang'); else u.searchParams.set('lang',l); history.replaceState(null,'',u); }catch(e){}
+  /* count language switches so we can measure demand for translated event notes */
+  try{ if(window.goatcounter&&goatcounter.count) goatcounter.count({path:'lang-switch-'+l,title:'Language switch: '+l,event:true}); }catch(e){}
   applyLang(); buildLegend(); heartUI(); loadMonth(MONTH);
 }
 document.getElementById('langseg').addEventListener('click', function(e){ const b=e.target.closest('button'); if(b) setLang(b.dataset.lang); });

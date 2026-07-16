@@ -67,8 +67,19 @@ Pass criteria: each month builds a full grid (34 `.cell` divs incl. leading blan
 - Visible intro paragraph `.m4` with `data-i18n="intro"` in the masthead, translated in all four I18N blocks. It's a ranking signal; don't remove it.
 - **JSON-LD Event generator**: an IIFE near the bottom of the main script (comment "SEO: schema.org Event JSON-LD") derives schema.org Event markup from MONTHS + GEO + LNK at load time, today-and-future events only. It self-updates when events are added — no maintenance needed, but NEVER delete the block. It assumes lib rows keep the [t,l,tm,a,reg,virt,days] shape and other events keep t/l/tm/d/cost/ages/link/note/b fields; if those shapes change, update the generator too.
 - Static files at repo/folder root, all deploy as assets: `sitemap.xml`, `robots.txt` (carries the `Sitemap:` directive; Cloudflare prepends its managed content-signal block on top — that's expected), `og-card.png` (1200x630 social card).
-- Google Search Console: setup pending as of July 14 2026 (needs LL's Google login). Once verified, submit sitemap.xml and request indexing after major content changes.
-- Phase 2 (not built): per-neighborhood/per-category landing pages, to be designed from Search Console query data ~4-6 weeks after GSC setup.
+- Google Search Console: LIVE since July 14 2026 (domain property, auto-verified via Cloudflare domain connect — never delete the google-site-verification TXT record in Cloudflare DNS). Sitemap submitted (domain properties need the full URL: https://citykidbk.com/sitemap.xml). July 16: structured-data warnings fixed (endDate, offers.availability/validFrom, description fallback); events with unstated prices deliberately carry no offers — never invent a price.
+- **IndexNow** (added July 16 2026): key file `fc64a45ba3e6667be675b89c6a875f62.txt` at repo root must keep deploying as an asset. After every publish, ping Bing/IndexNow with a GET to: `https://api.indexnow.org/indexnow?url=https://citykidbk.com/&key=fc64a45ba3e6667be675b89c6a875f62` (sweep: add this as your final publish step; a failed ping is non-fatal, skip and continue).
+- Phase 2 (not built): per-neighborhood/per-category landing pages, to be designed from Search Console query data (check GSC Performance tab early August 2026).
+
+## Event card rendering (redesigned July 16 2026 — LL-approved)
+
+- Detail cards are TITLE-FIRST: event name (`.ttl`) is the headline; the venue moved to a small `.venueline` under it (bold name before the first `·`, the rest muted small). Data shape is UNCHANGED — this is all display-layer; keep writing `l` fields as "Venue · Neighborhood (address)".
+- `chipsFor(e)` normalizes the free-form `cost` string into uniform chips: a yellow price chip ($N / Free / Free trial / W admission) and a white action chip (Drop-in / Register / RSVP / Members). Library events default to Drop-in. Cost wording stays free-form in the data; the parser handles it. If a genuinely new cost pattern appears and parses to nothing, the note still carries the raw string.
+- Nuanced cost strings (packs, semesters, trials — anything with parens/;/pack/semester/bundle/trial) are auto-prepended to the note so no information is lost.
+- Notes render gray and CLAMP to 2 lines with a more/less toggle (only shows when overflowing). Keep notes visitor-facing per editorial rules; length is fine now.
+- NEW optional event field `alert`: short urgent notice (cancellation, heat closure, rain postponement) rendered in bold red above the note. Use it instead of putting warnings in `note` — red is reserved for alerts now. Remove stale alerts promptly.
+- Chip labels are translated via `S.chips` (+ `noteMore`/`noteLess`) in ALL FOUR I18N blocks — when touching languages, keep all four in sync.
+- Language switches fire a GoatCounter event (`lang-switch-<code>`) so we can measure demand for translating event notes. Don't remove the ping in setLang.
 
 ## Known quirks & open items
 
