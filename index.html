@@ -226,6 +226,38 @@
     <circle cx="39" cy="68" r="4" fill="#FF8FA3" opacity=".7"/><circle cx="81" cy="68" r="4" fill="#FF8FA3" opacity=".7"/>
   </svg>
 </div>
+<script>
+/* Seasonal intro rider: kawaii backpack takes over from the sun after Labor Day (Sep 8 2026 onward). */
+(function(){
+  try{
+    var now=new Date();
+    if(now < new Date(2026,8,8)) return; /* sun keeps the job through Labor Day */
+    var r=document.getElementById('sunride'); if(!r) return;
+    r.innerHTML='<svg class="sunbob" viewBox="0 0 120 120" width="150" height="150">'
+      +'<g stroke="#0F1015" stroke-width="3" stroke-linejoin="round">'
+      /* straps peeking out the sides */
+      +'<path d="M22 46 Q12 62 20 84" fill="none" stroke-width="7"/>'
+      +'<path d="M98 46 Q108 62 100 84" fill="none" stroke-width="7"/>'
+      /* top handle */
+      +'<path d="M46 22 Q60 8 74 22" fill="none" stroke-width="6"/>'
+      /* body */
+      +'<rect x="22" y="20" width="76" height="84" rx="20" fill="#F0433F"/>'
+      /* lid highlight */
+      +'<path d="M22 44 Q60 34 98 44 L98 40 Q60 22 22 40 Z" fill="#fff" opacity=".35" stroke="none"/>'
+      /* front pocket */
+      +'<rect x="34" y="56" width="52" height="40" rx="14" fill="#FFC93C"/>'
+      /* zipper */
+      +'<path d="M40 56 Q60 50 80 56" fill="none" stroke-width="2.5" stroke-dasharray="3 3"/>'
+      +'</g>'
+      /* face on the pocket */
+      +'<g fill="#0F1015"><circle cx="49" cy="72" r="3.4"/><circle cx="71" cy="72" r="3.4"/></g>'
+      +'<circle cx="50.4" cy="70.6" r="1.2" fill="#fff" opacity=".8"/><circle cx="72.4" cy="70.6" r="1.2" fill="#fff" opacity=".8"/>'
+      +'<path d="M53 80 Q60 87 67 80" stroke="#0F1015" stroke-width="3" fill="none" stroke-linecap="round"/>'
+      +'<circle cx="42" cy="79" r="3.6" fill="#FF8FA3" opacity=".7"/><circle cx="78" cy="79" r="3.6" fill="#FF8FA3" opacity=".7"/>'
+      +'</svg>';
+  }catch(e){/* the intro must never break the calendar */}
+})();
+</script>
 <div class="wrap">
   <header class="masthead">
     <div class="eyebrow" data-i18n="eyebrow">Brooklyn · Ditmas Park &amp; nearby</div>
@@ -829,11 +861,23 @@ const AUG_LIB = [
 ["Build with LEGO and DUPLO","Windsor Terrace Library","3:30–4:30 PM","kids",0,0,"7,14,21,28"],
 ["Summer at the Library: Stomp, Clap, and Sing with Corey","Windsor Terrace Library","10:30–11:30 AM","kids",0,0,"24"]
 ];
+/* SEPTEMBER — STAGED, NOT LAUNCHED. Bump MAX_MONTH to 8 (and nothing else) to launch.
+   Seeded with verified knowns only; the late-August next-month sweep check fills the rest.
+   SWEEP TODOs: BBB fall Wed semester @ "Prospect Range" (verify venue address before adding + GEO pin);
+   Flatbush Frolic Sun Sep 27 (fdconline.org — confirm cross streets + kids programming, see pending-adds);
+   FDC Open Streets fall season re-check; BPL September listings (API posts ~a month out);
+   all recurring Ditmas providers' fall schedules (CMP, Viva, Rikud, Little Makers, Cocoon, Spot, ELC). */
+const SEP_OTHER = [
+  {t:"Brooklyn Baby Bops (Fall Semester)", l:"Viva Art Studio · Ditmas Park (1416 Newkirk Ave)", tm:"9:15 & 10:15 AM", c:"music", a:"u5", ages:"6 mo–3.5 yrs", cost:"$200 8-week semester ($25/class)", link:"https://www.brooklynbabybops.com/book-online", note:"Thursday fall semester at Viva, starting Sep 17 — guaranteed spot for 8 weeks, makeup credits if you miss one. Early registration includes a free toddler tee.", d:[17,24]}
+];
+const SEP_LIB = [
+];
 const MONTHS = {
   6:{ y:2026, name:'JULY',   other:JUL_OTHER, lib:JUL_LIB },
-  7:{ y:2026, name:'AUGUST', other:AUG_OTHER, lib:AUG_LIB }
+  7:{ y:2026, name:'AUGUST', other:AUG_OTHER, lib:AUG_LIB },
+  8:{ y:2026, name:'SEPTEMBER', other:SEP_OTHER, lib:SEP_LIB }
 };
-const MIN_MONTH=6, MAX_MONTH=7, MONABBR={6:'JUL',7:'AUG'};
+const MIN_MONTH=6, MAX_MONTH=7, MONABBR={6:'JUL',7:'AUG',8:'SEP'}; /* MAX_MONTH=8 launches September */
 
 /* [substring matcher, lat, lng, Google Maps query] — order matters: specific names before generic ones. Pins are approximate. */
 const GEO = [
@@ -1260,6 +1304,7 @@ loadMonth(startMonth);
   }
   const out=[];
   for(const mk in MONTHS){
+    if(+mk>MAX_MONTH) continue; /* staged months stay out of SEO markup until launched */
     const m=+mk, y=MONTHS[mk].y;
     MONTHS[mk].other.forEach(function(e){
       (e.d||[]).forEach(function(day){
