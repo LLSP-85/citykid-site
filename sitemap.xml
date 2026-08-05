@@ -9,4 +9,9 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://citykidbk.com/?lang=es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://citykidbk.com/"/>
   </url>
+  <url>
+    <loc>https://citykidbk.com/operation-gig</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
