@@ -77,6 +77,14 @@
   .navbtn:hover{background:#fff;} .navbtn[disabled]{opacity:.3; cursor:default;}
   .mlabel{font-size:34px; min-width:250px; text-align:center; letter-spacing:1px;}
   .controls{display:flex; flex-wrap:wrap; gap:18px; align-items:center;}
+  .fpanel{display:none; width:100%;}
+  .fpanel.open{display:flex; flex-wrap:wrap; gap:18px; align-items:center;}
+  .nbwrap{width:100%;}
+  .nblabel{font-family:'Baloo 2','Baloo Da 2',sans-serif; font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:1px; margin:0 0 8px;}
+  .nbchips{display:flex; flex-wrap:wrap; gap:8px;}
+  .nbchips button{border:1px solid var(--ink); background:transparent; color:var(--ink); font-family:'Baloo 2','Baloo Da 2',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.5px; font-size:14px; padding:10px 12px 8px; cursor:pointer; border-radius:0; min-height:44px;}
+  .nbchips button.on{background:var(--ink); color:#fff;}
+  @media(min-width:641px){ .fbtn{display:none;} .fpanel{display:flex; flex-wrap:wrap; gap:18px; align-items:center;} }
   .seg{display:inline-flex; border:1px solid var(--ink); border-radius:0; overflow:hidden; background:transparent;}
   .seg button{border:0; background:transparent; padding:12px 18px 10px; font-size:17px; font-weight:700; cursor:pointer; color:var(--ink); font-family:'Baloo 2','Baloo Da 2',sans-serif; text-transform:uppercase; letter-spacing:.5px;}
   .seg button + button{border-left:1px solid var(--ink);}
@@ -286,12 +294,6 @@
       <button class="navbtn" id="next" aria-label="Next month">&#8250;</button>
     </div>
     <div class="controls">
-      <div class="seg" id="langseg" aria-label="Language / Lang / ভাষা / Idioma">
-        <button data-lang="en" class="on">EN</button>
-        <button data-lang="ht">Kreyòl</button>
-        <button data-lang="bn">বাংলা</button>
-        <button data-lang="es">Español</button>
-      </div>
       <div class="seg" id="calseg">
         <button data-cal="month" class="on" data-i18n="month">Month</button>
         <button data-cal="week" data-i18n="week">Week</button>
@@ -301,12 +303,20 @@
         <button data-cost="free" data-i18n="free">Free</button>
         <button data-cost="u25" data-i18n="u25">$25 &amp; Under</button>
       </div>
-      <div class="seg" id="boroseg">
-        <button data-boro="all" class="on" data-i18n="all">All</button>
-        <button data-boro="bk">Brooklyn</button>
-        <button data-boro="mn">Manhattan</button>
+      <button id="fbtn" class="minebtn sub fbtn" aria-expanded="false" aria-controls="fpanel"><span data-i18n="filters">Filter by neighborhood</span> <span class="fcaret">&#9662;</span></button>
+      <div id="fpanel" class="fpanel">
+        <div class="nbwrap">
+          <div class="nblabel" data-i18n="nbhd">Neighborhoods</div>
+          <div class="nbchips" id="nbchips"></div>
+        </div>
+        <div class="legend" id="legend"></div>
+        <div class="seg" id="langseg" aria-label="Language / Lang / ভাষা / Idioma">
+          <button data-lang="en" class="on">EN</button>
+          <button data-lang="ht">Kreyòl</button>
+          <button data-lang="bn">বাংলা</button>
+          <button data-lang="es">Español</button>
+        </div>
       </div>
-      <div class="legend" id="legend"></div>
       <div class="mineblock">
         <button id="minebtn" class="minebtn">&#9825; My Calendar</button>
         <button id="sharebtn" class="minebtn sub" hidden data-i18n="share">Share</button>
@@ -397,7 +407,7 @@ en:{title:'Toddler Classes & Kids Events in Ditmas Park, Flatbush & Brooklyn | C
  tagline:'Toddler Classes &amp; Events &#183; Summer Should Be Fun!!', eyebrow:'Brooklyn · Ditmas Park &amp; nearby',
  intro:'A free calendar of drop-in toddler classes, library storytimes, and park &amp; playground events around Ditmas Park, Flatbush, Kensington, and greater Brooklyn. Updated weekly.',
  chips:{free:'Free',freeTrial:'Free trial',admission:'W/ admission',members:'Members',dropin:'Drop-in',register:'Register',rsvp:'RSVP'},
- noteMore:'more', noteLess:'less', mapFail:'The map couldn\u2019t load, so here\u2019s the list instead.',
+ noteMore:'more', noteLess:'less', mapFail:'The map couldn\u2019t load, so here\u2019s the list instead.', filters:'Filter by neighborhood', nbhd:'Neighborhoods', nbhdMore:'More Brooklyn',
  month:'Month', week:'Week', anyPrice:'Any price', free:'Free', u25:'$25 &amp; Under', all:'All',
  myCal:'My Calendar', share:'Share', ics:'Add to my phone (.ics)', list:'List', map:'Map',
  legend:{class:'Classes',fitness:'Fitness',lib:'Library',garden:'Parks & gardens',museum:'Museums',music:'Music'},
@@ -426,7 +436,7 @@ ht:{title:'Klas ak Aktivite pou Timoun Piti nan Ditmas Park, Flatbush ak Brookly
  tagline:'Klas ak Aktivite pou Timoun Piti &#183; Ete a fèt pou plezi!!', eyebrow:'Brooklyn · Ditmas Park ak zòn ki toupre yo',
  intro:'Yon kalandriye gratis pou klas timoun piti, lè istwa nan bibliyotèk, ak aktivite nan pak yo &#8212; nan Ditmas Park, Flatbush, Kensington, ak tout Brooklyn. Mizajou chak semèn.',
  chips:{free:'Gratis',freeTrial:'Esè gratis',admission:'Ak antre',members:'Pou manm',dropin:'Antre lib',register:'Enskri',rsvp:'Rezève'},
- noteMore:'plis', noteLess:'mwens', mapFail:'Kat la pa t ka chaje, men lis la pito.',
+ noteMore:'plis', noteLess:'mwens', mapFail:'Kat la pa t ka chaje, men lis la pito.', filters:'Filtre pa katye', nbhd:'Katye yo', nbhdMore:'Lòt kote Brooklyn',
  month:'Mwa', week:'Semèn', anyPrice:'Nenpòt pri', free:'Gratis', u25:'$25 oswa mwens', all:'Tout',
  myCal:'Kalandriye Mwen', share:'Pataje', ics:'Sove nan telefòn mwen (.ics)', list:'Lis', map:'Kat',
  legend:{class:'Klas',fitness:'Fitnès',lib:'Bibliyotèk',garden:'Pak ak jaden',museum:'Mize',music:'Mizik'},
@@ -455,7 +465,7 @@ bn:{title:'ডিটমাস পার্ক, ফ্ল্যাটবুশ �
  tagline:'ছোটদের ক্লাস ও ইভেন্ট &#183; গ্রীষ্ম হোক মজার!!', eyebrow:'ব্রুকলিন · ডিটমাস পার্ক ও আশেপাশে',
  intro:'ডিটমাস পার্ক, ফ্ল্যাটবুশ, কেনসিংটন ও ব্রুকলিন জুড়ে ছোটদের ড্রপ-ইন ক্লাস, লাইব্রেরির স্টোরিটাইম ও পার্কের ইভেন্টের একটি ফ্রি ক্যালেন্ডার। প্রতি সপ্তাহে আপডেট হয়।',
  chips:{free:'ফ্রি',freeTrial:'ফ্রি ট্রায়াল',admission:'টিকিটসহ ফ্রি',members:'সদস্যদের জন্য',dropin:'ড্রপ-ইন',register:'রেজিস্টার',rsvp:'রিজার্ভ'},
- noteMore:'আরও', noteLess:'কম', mapFail:'মানচিত্র লোড হয়নি, তাই তালিকা দেখানো হচ্ছে।',
+ noteMore:'আরও', noteLess:'কম', mapFail:'মানচিত্র লোড হয়নি, তাই তালিকা দেখানো হচ্ছে।', filters:'এলাকা অনুযায়ী ফিল্টার', nbhd:'এলাকা', nbhdMore:'ব্রুকলিনের অন্যত্র',
  month:'মাস', week:'সপ্তাহ', anyPrice:'যেকোনো দাম', free:'ফ্রি', u25:'$25 বা কম', all:'সব',
  myCal:'আমার ক্যালেন্ডার', share:'শেয়ার', ics:'ফোনে সেভ করুন (.ics)', list:'তালিকা', map:'ম্যাপ',
  legend:{class:'ক্লাস',fitness:'ফিটনেস',lib:'লাইব্রেরি',garden:'পার্ক ও বাগান',museum:'জাদুঘর',music:'গান'},
@@ -484,7 +494,7 @@ es:{title:'Clases y eventos para peques en Ditmas Park, Flatbush y Brooklyn | Ci
  tagline:'Clases y Eventos para Peques &#183; ¡¡El verano es para divertirse!!', eyebrow:'Brooklyn · Ditmas Park y alrededores',
  intro:'Un calendario local gratuito de clases para peques sin inscripción previa, cuentacuentos en bibliotecas y eventos en parques por Ditmas Park, Flatbush, Kensington y todo Brooklyn. Se actualiza cada semana.',
  chips:{free:'Gratis',freeTrial:'Prueba gratis',admission:'Con entrada',members:'Socios',dropin:'Sin cita',register:'Inscripción',rsvp:'Reservar'},
- noteMore:'más', noteLess:'menos', mapFail:'El mapa no pudo cargar; aqu\u00ed est\u00e1 la lista.',
+ noteMore:'más', noteLess:'menos', mapFail:'El mapa no pudo cargar; aqu\u00ed est\u00e1 la lista.', filters:'Filtrar por barrio', nbhd:'Barrios', nbhdMore:'Más Brooklyn',
  month:'Mes', week:'Semana', anyPrice:'Cualquier precio', free:'Gratis', u25:'$25 o menos', all:'Todos',
  myCal:'Mi calendario', share:'Compartir', ics:'Guardar en mi teléfono (.ics)', list:'Lista', map:'Mapa',
  legend:{class:'Clases',fitness:'Fitness',lib:'Biblioteca',garden:'Parques y jardines',museum:'Museos',music:'Música'},
@@ -986,7 +996,7 @@ function push(day, ev){ (BYDAY[day] = BYDAY[day] || []).push(ev); if(ev.id) EVID
 
 const grid=document.getElementById('grid'), detail=document.getElementById('detail');
 const dtitle=document.getElementById('dtitle'), mapwrap=document.getElementById('mapwrap'), mapnote=document.getElementById('mapnote');
-const state={cost:'any', boro:'all', view:'list', mine:!!hashPicks, cal:(window.matchMedia&&matchMedia('(max-width:640px)').matches)?'week':'month', cats:{class:true,lib:true,garden:true,museum:true,music:true,fitness:true}};
+const state={cost:'any', nb:{}, view:'list', mine:!!hashPicks, cal:(window.matchMedia&&matchMedia('(max-width:640px)').matches)?'week':'month', cats:{class:true,lib:true,garden:true,museum:true,music:true,fitness:true}};
 const _now=new Date(), REAL_Y=_now.getFullYear(), REAL_M=_now.getMonth(), REAL_D=_now.getDate();
 let YEAR=2026, MONTH=6, firstDow=3, numDays=31, selected=1;
 
@@ -1030,7 +1040,10 @@ function parseTime(tm){
 function priceOf(e){ if(e.c==='lib') return 0; const c=(e.cost||''); if(/free/i.test(c)) return 0; const m=c.match(/\$(\d+)/); return m?+m[1]:null; }
 function isFree(e){ return priceOf(e)===0; }
 function isU25(e){ const p=priceOf(e); return p!==null && p>0 && p<=25; }
-function visible(ev){ if(!state.cats[ev.c]) return false; if(state.mine&&!HEARTS.has(ev.id)) return false; if(state.boro!=='all'&&(ev.b||'bk')!==state.boro) return false; if(state.cost==='free'&&!isFree(ev)) return false; if(state.cost==='u25'&&!isU25(ev)) return false; return true; }
+const NBHD=[["Cortelyou Library","dp"],["Ditmas Park","dp"],["Flatbush Library","fb"],["East Flatbush","fb"],["Fit4Dance","fb"],["Prospect Lefferts","plg"],["Jaden Timoun","plg"],["Kensington","kn"],["Crown Heights","ch"],["Windsor Terrace","wt"],["Central Library","ps"],["Park Slope","ps"],["Prospect Heights","ps"],["Brooklyn Botanic","ps"],["Prospect Park","pp"],["Audubon","pp"],["Long Meadow","pp"],["Vanderbilt Playground","pp"],["Grand Army","pp"]];
+const NBNAMES={dp:"Ditmas Park",fb:"Flatbush",kn:"Kensington",ch:"Crown Heights",plg:"PLG",wt:"Windsor Terrace",ps:"Park Slope & Prospect Hts",pp:"Prospect Park",mn:"Manhattan"};
+function nbhdOf(e){ const l=String(e.l||''); for(let i=0;i<NBHD.length;i++){ if(l.indexOf(NBHD[i][0])>=0) return NBHD[i][1]; } return (e.b==='mn'||/manhattan|bryant park|central park|teardrop|lincoln center|whitney/i.test(l))?'mn':'bkx'; }
+function visible(ev){ if(!state.cats[ev.c]) return false; if(state.mine&&!HEARTS.has(ev.id)) return false; const _nbs=Object.keys(state.nb).filter(function(k){return state.nb[k];}); if(_nbs.length&&_nbs.indexOf(nbhdOf(ev))<0) return false; if(state.cost==='free'&&!isFree(ev)) return false; if(state.cost==='u25'&&!isU25(ev)) return false; return true; }
 function eventsFor(day){ return (BYDAY[day]||[]).filter(visible).sort((x,y)=>parseTime(x.tm)-parseTime(y.tm)); }
 
 let map=null, markers=[];
@@ -1156,7 +1169,18 @@ function buildLegend(){
 }
 buildLegend();
 function seg(id,key){ document.getElementById(id).addEventListener('click', e=>{ const b=e.target.closest('button'); if(!b) return; state[key]=b.dataset[key]; [...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b)); render(); renderDetail(selected); }); }
-seg('costseg','cost'); seg('viewseg','view'); seg('calseg','cal'); seg('boroseg','boro');
+seg('costseg','cost'); seg('viewseg','view'); seg('calseg','cal');
+function buildNb(){
+  const wrap=document.getElementById('nbchips'); if(!wrap) return;
+  const order=['dp','fb','kn','ch','plg','wt','ps','pp','bkx','mn'];
+  const anyOn=Object.keys(state.nb).filter(function(k){return state.nb[k];}).length>0;
+  let h='<button data-nb="all" class="'+(anyOn?'':'on')+'">'+S.all+'</button>';
+  for(let i=0;i<order.length;i++){ const k=order[i]; const nm=(k==='bkx')?S.nbhdMore:NBNAMES[k]; h+='<button data-nb="'+k+'" class="'+(state.nb[k]?'on':'')+'">'+nm+'</button>'; }
+  wrap.innerHTML=h;
+}
+buildNb();
+document.getElementById('nbchips').addEventListener('click', function(e){ const b=e.target.closest('button'); if(!b) return; const k=b.dataset.nb; if(k==='all'){ state.nb={}; } else { state.nb[k]=!state.nb[k]; } buildNb(); render(); renderDetail(selected); });
+document.getElementById('fbtn').addEventListener('click', function(){ const p=document.getElementById('fpanel'); const open=p.classList.toggle('open'); this.setAttribute('aria-expanded', open?'true':'false'); });
 document.querySelectorAll('#calseg button').forEach(b=>b.classList.toggle('on', b.dataset.cal===state.cal));
 /* Language switcher */
 function applyLang(){
@@ -1170,6 +1194,7 @@ function applyLang(){
   const nx=document.getElementById('next'); if(nx) nx.setAttribute('aria-label',S.nextM);
   const mc=document.getElementById('minical'); if(mc) mc.title=S.switchMonth;
   document.querySelectorAll('#langseg button').forEach(function(b){ b.classList.toggle('on', b.dataset.lang===LANG); });
+  if(typeof buildNb==='function') buildNb();
 }
 function setLang(l){
   if(!I18N[l]) l='en';
