@@ -31,6 +31,7 @@
 <!-- GoatCounter analytics. After signing up at goatcounter.com, replace "citykidbk" below with the code you chose. Counts nothing on localhost; free for personal use. -->
 <script data-goatcounter="https://citykidbk.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <style>
+  html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
   :root{
     --ink:#0F1015; --blue:#BFD5D9; --paper:#BFD5D9; --card:#ffffff;
     --muted:#3d4a52; --hair:var(--ink);
@@ -1007,7 +1008,7 @@ function loadMonth(m){
   MONTHS[m].other.forEach(s => { s.id=hid(s.t+'|'+s.l+'|'+s.tm); s.d.forEach(day => push(day, s)); });
   MONTHS[m].lib.forEach(r => { const [t,l,tm,a,reg,virt,days]=r; const ev={t,l,tm,c:"lib",a,reg,link:LNK.bpl,id:hid(t+'|'+l+'|'+tm)}; days.split(',').forEach(d=>push(+d,ev)); });
   selected=(YEAR===REAL_Y&&MONTH===REAL_M&&REAL_D<=numDays)?REAL_D:1;
-  const bm=document.getElementById('bigmonth'); if(bm) bm.textContent=S.monthBig[m];
+  const bm=document.getElementById('bigmonth'); if(bm){ bm.textContent=S.monthBig[m]; bm.style.fontSize=''; let fs=parseFloat(getComputedStyle(bm).fontSize); while(bm.scrollWidth>bm.clientWidth && fs>34){ fs-=2; bm.style.fontSize=fs+'px'; } }
   const ml=document.getElementById('mlabel'); if(ml) ml.textContent=mlabelTxt(MONTH,YEAR);
   const other=(m===MIN_MONTH)?m+1:m-1; buildMini(other);
   const mc=document.getElementById('minical'); if(mc) mc.onclick=()=>loadMonth(other);
