@@ -30,6 +30,24 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <!-- GoatCounter analytics. After signing up at goatcounter.com, replace "citykidbk" below with the code you chose. Counts nothing on localhost; free for personal use. -->
 <script data-goatcounter="https://citykidbk.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script>
+/* Fire a GoatCounter event by name. count.js is async, so events triggered during
+   page load (the signup / submission confirmations) can run before it exists —
+   retry briefly rather than silently dropping the conversion. */
+window.ckCount=function(path,title){
+  try{
+    var n=0;
+    (function go(){
+      if(window.goatcounter&&window.goatcounter.count){
+        try{ window.goatcounter.count({path:path,title:title,event:true}); }catch(e){}
+        return;
+      }
+      if(++n>40) return;            /* give up after ~6s */
+      setTimeout(go,150);
+    })();
+  }catch(e){}
+};
+</script>
 <style>
   html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
   :root{
@@ -836,6 +854,9 @@ const AUG_OTHER = [
   {t:"UNIQLO Family Day", l:"MoMA · Midtown (11 W 53rd St)", tm:"10:30 AM–5:00 PM", c:"museum", a:"u5", ages:"4 & up", cost:"Free · register", b:"mn", link:"https://www.moma.org/calendar/programs/249", note:"Free family museum day — hands-on art making, Sculpture Garden sketching, storybook readings and mini concerts. Advance registration required; arrival slots are limited and do sell out.", d:[8]},
   {t:"Aarti: Hindu Lamp Ceremony", l:"Brooklyn Bridge Park · Pebble Beach (Dumbo)", tm:"5:00–7:30 PM", c:"garden", a:"u5", ages:"All ages", cost:"Free", link:"https://brooklynbridgepark.org/event/hindu-lamp-ceremony/", note:"14th annual riverside Aarti — decorate a palm-leaf lamp and release it along the East River at dusk, with Ajna Dance Company performances at 6 & 7 PM. Free walk-up, no registration. Pets stay home.", d:[8]},
   {t:"Back to School Bonanza", l:"Bushwick Playground · Bushwick (Putnam Ave btwn Knickerbocker & Irving Aves)", tm:"2:00–4:00 PM", c:"garden", a:"u5", ages:"All ages", cost:"Free", link:"https://www.eventbrite.com/e/nysom-back-to-school-bonanza-2026-tickets-1985997987442", note:"School-supply giveaway with costumed superhero meet-and-greets (Supergirl, Superman, Captain America).", d:[15]},
+  {t:"Jamaica Rising Day Parade & Street Festival", l:"Flatbush · Church Ave & Flatbush Ave (Bob Marley Blvd)", tm:"11:00 AM parade · 3:00–6:00 PM festival", c:"music", a:"u5", ages:"All ages", cost:"Free", link:"https://jamaicandayparade.org/", note:"America’s first Jamaican Day Parade steps off at Bob Marley Boulevard and heads north on Flatbush Ave, with food and craft vendors along the route. The closing celebration runs 3–6 PM at Dr. Ronald McNair Park on Eastern Parkway. Check the official site for the final route before you head out.", d:[8]},
+  {t:"Crafternoon: Relief Carving & Animal Imagery", l:"Powerhouse Arts · Gowanus (322 3rd Ave)", tm:"1:00–4:00 PM", c:"class", a:"u5", ages:"All ages", cost:"Free", link:"https://powerhousearts.org/event/crafternoon-relief-carving-animal-imagery", note:"Free drop-in art afternoon in the lobby — hands-on relief carving inspired by the animals in their Ark exhibition. No registration, monthly series.", d:[8]},
+  {t:"Vanderbilt Open Street (car-free Saturdays)", l:"Prospect Heights · Vanderbilt Ave (Atlantic Ave–Park Place)", tm:"12:00–10:00 PM", c:"garden", a:"u5", ages:"All ages", cost:"Free", link:"https://www.phos.nyc/", note:"Ten blocks of Vanderbilt go car-free every Saturday through September. Programming varies week to week and often includes live music, double dutch and sprinklers; the organizers announce each Saturday’s lineup on their newsletter and Instagram.", d:[8,15,22,29]},
 ];
 const AUG_LIB = [
 ["Storytime","Central Library · Youth Wing","10:30–11:00 AM","u5",0,0,"10,12,17,19,24,26"],
@@ -911,6 +932,9 @@ const MIN_MONTH=6, MAX_MONTH=7, MONABBR={6:'JUL',7:'AUG',8:'SEP'}; /* MAX_MONTH=
 const GEO = [
   ["East Fourth Street Community Garden", 40.64865, -73.97785, "East Fourth Street Community Garden Brooklyn"],
   ["Powerhouse on 8th", 40.6637, -73.9798, "Powerhouse on 8th Brooklyn"],
+  ["Powerhouse Arts", 40.67646, -73.98854, "322 3rd Ave Brooklyn NY 11215"],
+  ["Vanderbilt Ave", 40.68052, -73.96825, "Vanderbilt Ave Prospect Heights Brooklyn"],
+  ["Church Ave & Flatbush", 40.65045, -73.96220, "Church Ave and Flatbush Ave Brooklyn"],
   ["Lofty Pigeon", 40.6438, -73.9787, "Lofty Pigeon Books Brooklyn"],
   ["Cortelyou Music & Play", 40.64012, -73.96619, "376 Argyle Rd Brooklyn NY 11218"],
   ["Prospect Park Zoo", 40.6653, -73.9648, "Prospect Park Zoo"],
@@ -1216,7 +1240,7 @@ function setLang(l){
   try{ localStorage.setItem('ck_lang',l); }catch(e){}
   try{ const u=new URL(location.href); if(l==='en') u.searchParams.delete('lang'); else u.searchParams.set('lang',l); history.replaceState(null,'',u); }catch(e){}
   /* count language switches so we can measure demand for translated event notes */
-  try{ if(window.goatcounter&&goatcounter.count) goatcounter.count({path:'lang-switch-'+l,title:'Language switch: '+l,event:true}); }catch(e){}
+  ckCount('lang-switch-'+l,'Language switch: '+l);
   applyLang(); buildLegend(); heartUI(); loadMonth(MONTH);
 }
 document.getElementById('langseg').addEventListener('click', function(e){ const b=e.target.closest('button'); if(b) setLang(b.dataset.lang); });
@@ -1235,11 +1259,12 @@ function heartUI(){
 detail.addEventListener('click', function(e){
   const b=e.target.closest('.heart'); if(!b) return;
   const id=b.dataset.id;
-  if(HEARTS.has(id)) HEARTS.delete(id); else HEARTS.add(id);
+  if(HEARTS.has(id)) HEARTS.delete(id); else { HEARTS.add(id); ckCount('event-save','Saved an event to My Calendar'); }
   saveHearts(); heartUI(); render(); renderDetail(selected);
 });
 minebtn.addEventListener('click', function(){ state.mine=!state.mine; heartUI(); render(); renderDetail(selected); });
 sharebtn.addEventListener('click', function(){
+  ckCount('share-my-calendar','Shared a saved calendar');
   const url=location.origin.replace(/^null$/,'')+location.pathname+'#my='+[...HEARTS].join(',');
   const done=function(){ sharebtn.textContent=S.copied; setTimeout(function(){ sharebtn.textContent=S.share; },1500); };
   if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, function(){ prompt(S.copyPrompt, url); });
@@ -1272,15 +1297,28 @@ icsbtn.addEventListener('click', function(){
   const entries=[];
   Object.keys(BYDAY).forEach(function(day){ BYDAY[day].forEach(function(e){ if(HEARTS.has(e.id)) entries.push([+day,e]); }); });
   downloadIcs(entries, 'city-kid-picks.ics');
+  ckCount('ics-export-picks','Exported saved picks to .ics');
 });
 detail.addEventListener('click', function(ev){
   const b=ev.target.closest('.addcal'); if(!b) return;
   const e=EVIDX[b.dataset.id]; if(!e) return;
   downloadIcs([[+b.dataset.day, e]], 'city-kid-event.ics');
+  ckCount('ics-export-single','Added one event to calendar');
   b.textContent=S.saved;
   setTimeout(function(){ b.textContent=S.addCal; },2200);
 });
 heartUI();
+
+/* Outbound clicks: which venues and sources the calendar actually sends families to.
+   One delegated listener covers venue links, map links and the Instagram footer. */
+document.addEventListener('click', function(ev){
+  try{
+    const a=ev.target.closest('a[target="_blank"]'); if(!a||!a.href) return;
+    const host=new URL(a.href,location.href).hostname.replace(/^www\./,'');
+    if(!host||host===location.hostname.replace(/^www\./,'')) return;
+    ckCount('out-'+host,'Outbound click: '+host);
+  }catch(e){}
+}, true);
 
 /* Sun exits after its ride */
 const sun=document.getElementById('sunride');
@@ -1381,6 +1419,7 @@ loadMonth(startMonth);
 
 /* Thank-you toast after form submit (worker redirects to /?submitted=1) */
 if(new URLSearchParams(location.search).get('submitted')==='1'){
+  ckCount('event-submit-complete','Event submission completed');
   const tst=document.createElement('div');
   tst.textContent='Got it — thanks! Nothing posts until it gets a quick review.';
   tst.setAttribute('role','status');
@@ -1392,6 +1431,7 @@ if(new URLSearchParams(location.search).get('submitted')==='1'){
 
 /* Welcome toast after email signup (worker redirects to /?subscribed=1) */
 if(new URLSearchParams(location.search).get('subscribed')==='1'){
+  ckCount('signup-complete','Email signup completed');
   const tst=document.createElement('div');
   tst.textContent=S.subToast;
   tst.setAttribute('role','status');
