@@ -37,6 +37,20 @@ A Claude Cowork scheduled task **"citykid-source-sweep"** runs Tue & Fri ~6 AM E
 1. This folder's `index.html` is the canonical copy. If you work from a separate git clone and don't sync back here, **the next sweep will clobber your changes** by pushing this folder's version. Work in this folder and everything stays consistent.
 2. If you restructure the project (rename files, split index.html, change repo layout), the sweep's instructions and its memory file will be stale — tell LL to mention it in her Cowork "Toddler Schedule" project so the sweep gets updated, or pause the task first.
 
+## PUBLISH OR SAY SO (non-negotiable — added Aug 7 2026)
+
+**If you edit `index.html`, you publish it in the same session. Editing the folder is not shipping.**
+
+The folder copy and the live site are different things. A session that adds events to the folder and stops has made those events true for LL and false for every parent using the calendar. That gap can last up to four days, because the next sweep is the only thing that would push them, and the sweeps are Tue and Fri.
+
+This happened Aug 7 2026: three events LL spotted on Instagram and sent through chat (Jamaica Rising Day Parade, Powerhouse Crafternoon, Vanderbilt Open Street — all dated Sat Aug 8) were written into the folder and never pushed. They sat unpublished heading into a Saturday, which is peak usage. A later session caught it only because it hash-compared the folder against git HEAD for an unrelated reason.
+
+How to apply:
+- Edited `index.html`? Run the git-clone publish protocol above before the session ends. Every time. Even for a one-line add.
+- If you genuinely cannot publish (token expired, push blocked, verification failed), **say so explicitly and prominently in your reply to LL** — "these are in your folder but NOT live yet" — rather than reporting the add as done. Never let "added" stand in for "published."
+- Confirm the deploy actually landed: `workers_list` on Cloudflare worker `hidden-term-82d3` and check `modified_on` is recent. Note that `curl https://citykidbk.com` gets connection-reset from the sandbox and WebFetch strips `<script>`, so neither can confirm event data is live.
+- Starting a session: `md5sum` the folder's `index.html` against git HEAD. If the folder is AHEAD, someone left work unpublished — publish it, and tell LL you found it.
+
 ## Editorial rules (non-negotiable, from LL)
 
 - NEVER include virtual/online-only events.
