@@ -857,6 +857,9 @@ const AUG_OTHER = [
   {t:"Jamaica Rising Day Parade & Street Festival", l:"Flatbush · Church Ave & Flatbush Ave (Bob Marley Blvd)", tm:"11:00 AM parade · 3:00–6:00 PM festival", c:"music", a:"u5", ages:"All ages", cost:"Free", link:"https://jamaicandayparade.org/", note:"America’s first Jamaican Day Parade steps off at Bob Marley Boulevard and heads north on Flatbush Ave, with food and craft vendors along the route. The closing celebration runs 3–6 PM at Dr. Ronald McNair Park on Eastern Parkway. Check the official site for the final route before you head out.", d:[8]},
   {t:"Crafternoon: Relief Carving & Animal Imagery", l:"Powerhouse Arts · Gowanus (322 3rd Ave)", tm:"1:00–4:00 PM", c:"class", a:"u5", ages:"All ages", cost:"Free", link:"https://powerhousearts.org/event/crafternoon-relief-carving-animal-imagery", note:"Free drop-in art afternoon in the lobby — hands-on relief carving inspired by the animals in their Ark exhibition. No registration, monthly series.", d:[8]},
   {t:"Vanderbilt Open Street (car-free Saturdays)", l:"Prospect Heights · Vanderbilt Ave (Atlantic Ave–Park Place)", tm:"12:00–10:00 PM", c:"garden", a:"u5", ages:"All ages", cost:"Free", link:"https://www.phos.nyc/", note:"Ten blocks of Vanderbilt go car-free every Saturday through September. Programming varies week to week and often includes live music, double dutch and sprinklers; the organizers announce each Saturday’s lineup on their newsletter and Instagram.", d:[8,15,22,29]},
+  /* — LL adds Aug 11 2026 (Instagram stories; Field Day confirmed on apexforyouth.org/events) — */
+  {t:"Little Music Makers with Alyson", l:"Awesome Brooklyn · Prospect Lefferts Gardens (653 Flatbush Ave)", tm:"11:30 AM", c:"music", a:"u5", cost:"$10 · register", link:"https://www.instagram.com/awesomebrooklyn/", note:"Weekly Tuesday music class with Alyson Murray at the Awesome Brooklyn shop — songs, instruments and movement for little ones. Running since May. Weather can push it, so check their Instagram the morning of.", d:[11,18,25]},
+  {t:"Sunset Park Field Day", l:"Sunset Park Center Lawn · Sunset Park (behind the pool, 7th Ave & 43rd St)", tm:"1:00–3:00 PM", c:"garden", a:"u5", ages:"All ages", cost:"Free · RSVP", link:"https://apexforyouth.org/events/", note:"Fifth annual back-to-school field day from Apex for Youth — free school supplies, free books from Brooklyn Book Bodega, face painting and more, out on the center lawn. RSVP on the Apex events page.", d:[15]},
 ];
 const AUG_LIB = [
 ["Storytime","Central Library · Youth Wing","10:30–11:00 AM","u5",0,0,"10,12,17,19,24,26"],
@@ -913,6 +916,7 @@ const AUG_LIB = [
    Seeded with verified knowns only; the late-August next-month sweep check fills the rest.
    SWEEP TODOs: BBB fall Wed semester @ "Prospect Range" (verify venue address before adding + GEO pin);
    Flatbush Frolic Sun Sep 27 (fdconline.org — confirm cross streets + kids programming, see pending-adds);
+   Little Music Makers w/ Alyson @ Awesome Brooklyn (Tue 11:30 AM, $10) — confirm the fall run continues;
    FDC Open Streets fall season re-check; BPL September listings (API posts ~a month out);
    all recurring Ditmas providers' fall schedules (CMP, Viva, Rikud, Little Makers, Cocoon, Spot, ELC). */
 const SEP_OTHER = [
@@ -930,6 +934,8 @@ const MIN_MONTH=6, MAX_MONTH=7, MONABBR={6:'JUL',7:'AUG',8:'SEP'}; /* MAX_MONTH=
 
 /* [substring matcher, lat, lng, Google Maps query] — order matters: specific names before generic ones. Pins are approximate. */
 const GEO = [
+  ["Awesome Brooklyn", 40.657521, -73.960062, "653 Flatbush Ave Brooklyn NY 11225"],
+  ["Sunset Park Center Lawn", 40.64550, -74.00390, "Sunset Park center lawn behind the pool, 7th Ave & 43rd St Brooklyn"],
   ["East Fourth Street Community Garden", 40.64865, -73.97785, "East Fourth Street Community Garden Brooklyn"],
   ["Powerhouse on 8th", 40.6637, -73.9798, "Powerhouse on 8th Brooklyn"],
   ["Powerhouse Arts", 40.67646, -73.98854, "322 3rd Ave Brooklyn NY 11215"],
