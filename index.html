@@ -836,6 +836,9 @@ const AUG_OTHER = [
   /* — Aug 12 2026 adds (surfaced via the Brooklyn Bridge Parents 8/10–8/16 roundup, each re-verified on the organizer's own calendar) — */
   {t:"Nature Exploration: Wildlife Appreciation", l:"Prospect Park · Audubon Center & Boathouse", tm:"10:00 AM–3:00 PM", c:"garden", a:"u5", ages:"All ages", cost:"Free", link:LNK.pp, note:"A free drop-in nature day with the Prospect Park Alliance, in three parts. Nature Around Us runs 10–1 with seasonal discovery stations — pond samples, water testing, and the plants, insects and animals that live in the park. An Animal Encounter with Alliance naturalists follows 1–2 and starts promptly. A family bird walk goes 2–3 with binoculars and bird guides provided.", d:[13]},
   {t:"Farmhouse Family Day: Summer Fun on the Farm", l:"Wyckoff House Museum · East Flatbush (5816 Clarendon Rd)", tm:"11:00 AM–3:00 PM", c:"museum", a:"u5", ages:"Ideal for ages 4–12", cost:"Free · RSVP", link:"https://wyckoffmuseum.org/event/farmhouse-family-day-summer-fun-on-the-farm/", note:"Nature-based crafts and farm fun at Brooklyn’s oldest house. Farmhouse tours at 11:30, 12:30 and 1:30, with the 11:30 tour geared toward families. It runs both Saturday and Sunday, so one rainout isn’t the end of it. Indoors and outdoors both — closed-toe shoes if you want to do the farm activities.", d:[15,16]},
+  /* — Aug 13 2026 adds (both verified on the organizers' own listings) — */
+  {t:"Coney Island Sand Sculpting Contest", l:"Coney Island Beach · W 12th St & the Boardwalk", tm:"12:00–4:00 PM", c:"garden", a:"u5", ages:"All ages", cost:"Free", link:"https://www.nyctourism.com/events/coney-island-sand-sculpting-competition/", note:"The 34th annual contest. Teams build on the sand at W 12th St while the boardwalk watches, with live entertainment, giveaways and prizes. Registration opens at 11 AM if you want to compete; otherwise just walk down and look. Free and open to all ages, and the beach is right there when the little ones lose interest.", d:[15]},
+  {t:"FlyNYC Kite Festival", l:"Pier i · Riverside Park South (W 70th St, Manhattan)", tm:"12:00–5:00 PM", c:"garden", a:"u5", ages:"All ages", cost:"Free", b:"mn", link:"https://riversideparknyc.org/event/fly-nyc/", note:"Kite flying and live music on the Hudson, part of the Summer on the Hudson series. Free kite-making kits for children while supplies last, or bring your own kite. Free and open to the public.", d:[15]},
 ];
 const AUG_LIB = [
 ["Storytime","Central Library · Youth Wing","10:30–11:00 AM","u5",0,0,"10,12,17,19,24,26"],
@@ -916,6 +919,8 @@ const MIN_MONTH=6, MAX_MONTH=7, MONABBR={6:'JUL',7:'AUG',8:'SEP'}; /* MAX_MONTH=
 
 /* [substring matcher, lat, lng, Google Maps query] — order matters: specific names before generic ones. Pins are approximate. */
 const GEO = [
+  ["Coney Island Beach", 40.5723, -73.9789, "Coney Island Beach West 12th Street Boardwalk Brooklyn"],
+  ["Pier i", 40.7793, -73.9901, "Pier i Riverside Park South West 70th Street Manhattan"],
   ["Wyckoff House", 40.644344, -73.920784, "Wyckoff House Museum 5816 Clarendon Rd Brooklyn NY 11203"],
   ["Awesome Brooklyn", 40.657521, -73.960062, "653 Flatbush Ave Brooklyn NY 11225"],
   ["Sunset Park Center Lawn", 40.64550, -74.00390, "Sunset Park center lawn behind the pool, 7th Ave & 43rd St Brooklyn"],
