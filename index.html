@@ -848,6 +848,7 @@ const AUG_OTHER = [
   /* — Aug 14 2026 sweep adds — */
   {t:"Family Activity: Lenape Games", l:"South Street Seaport Museum", tm:"11:00 AM–4:30 PM", c:"museum", a:"u5", ages:"All ages", cost:"Included with admission", b:"mn", link:LNK.seaport, note:"Drop-in family activity exploring games played by the Lenape people. Saturdays & Sundays through Aug 30.", d:[15,16,22,23,29,30]},
   {t:"Family Program: ART–BOOK–MAKE", l:"El Museo del Barrio · East Harlem (1230 5th Ave, Manhattan)", tm:"10:00 AM–2:00 PM", c:"museum", a:"u5", ages:"All ages", cost:"Free", b:"mn", link:"https://www.eventbrite.com/e/family-program-artbookmake-tickets-1991999760908", note:"Book fair, artist-book making and read-alouds tied to the museum's Octopus & Others exhibit.", d:[15]},
+  {t:"School Open House: Sample Dance Classes", l:"Mark Morris Dance Center · Fort Greene (3 Lafayette Ave)", tm:"10:00 AM–1:00 PM", c:"class", a:"u5", ages:"18 mo–9 yrs", cost:"Free · RSVP", link:"https://markmorrisdancegroup.org/dance-center/the-school/", note:"Sample 2026–27 School classes for new students, including the Early Childhood program (postpartum movement + dance for 18 mo–4 yrs). School staff on hand to answer questions and help with registration.", d:[29]},
 ];
 const AUG_LIB = [
 ["Storytime","Central Library · Youth Wing","10:30–11:00 AM","u5",0,0,"17,19,24,26"],
@@ -1016,7 +1017,8 @@ const GEO = [
   ["Decatur St", 40.6858, -73.9319, "Decatur St Bed-Stuy Brooklyn"],
   ["Brooklyn Army Terminal", 40.6459, -74.0177, "Brooklyn Army Terminal 140 58th St Brooklyn"],
   ["Bushwick Playground", 40.6957, -73.9159, "Bushwick Playground Putnam Ave Brooklyn"],
-  ["El Museo del Barrio", 40.79535, -73.95237, "El Museo del Barrio 1230 5th Ave New York NY 10029"]
+  ["El Museo del Barrio", 40.79535, -73.95237, "El Museo del Barrio 1230 5th Ave New York NY 10029"],
+  ["Mark Morris Dance Center", 40.68863, -73.97427, "Mark Morris Dance Center 3 Lafayette Ave Brooklyn NY 11217"]
 ];
 function geo(l){ for(const g of GEO){ if(l.indexOf(g[0])>-1) return g; } return null; }
 
