@@ -59,6 +59,7 @@ How to apply:
 - "$25 & Under" filter is paid-only (isU25 requires price > 0); free events excluded from it.
 - Manhattan venues get `b:'mn'`.
 - Nothing from the inbox goes on the calendar without verification against an official source.
+- **Banned word: "littles."** LL hates it. Never use it on the site, on Instagram slides or captions, in the newsletter, or in anything else that goes out under the City Kid name. Say "toddler," "your toddler," "little one," "kids," or just name the age range. (Added Aug 16 2026, after it shipped on an IG cover slide.)
 
 ## Design system (per LL — she has strong opinions here)
 
@@ -98,6 +99,9 @@ Pass criteria: each month builds a full grid (34 `.cell` divs incl. leading blan
 ## Known quirks & open items
 
 - Sawyer (hisawyer.com) class pages are client-rendered — fetch the rendered DOM, not raw HTML.
+- **Brooklyn Baby Bops has NO fixed weekly schedule — never model it as recurring.** Their own service page says "Schedule is based on availability," and sessions live only inside a JS-rendered Wix booking widget that raw fetch can't see. Tyrone emails a fresh, different lineup every week (Jul 27: Sat+Sun 9 AM @ Viva. Aug 3: Wed+Thu Bop-Ups. Aug 9: Tue 9:30/10:30 + Wed 10 AM Bop-Ups. Aug 16: same pattern, plus NEW recurring Sunday 9 AM @ Viva). Diagnosed Aug 16 2026: the site had been carrying a phantom "Tuesday 10:15 AM @ Viva" on `d:[18,25]` that appears in NO newsletter and no source — a fabricated recurrence — while the Prospect Park Bop-Ups announced on Aug 3, Aug 9 and Aug 16 were never added at all. The Aug 3 and Aug 9 emails were both marked `processed=1` in the inbox, so the sweep read them and dropped the events on the floor. Rule going forward: only ever list Baby Bops dates that a specific email or the rendered booking widget states outright, one date at a time, and never extend a `d:[]` array past what the source says.
+- **Bop-Up location wording is fixed by the venue.** Tyrone DMed City Kid on Instagram Aug 18 2026 asking for it to read **"South of Vanderbilt Playground"** — not "in the grass next to the playground" and not "southwest side" (what the site had). Parents were showing up in the wrong spot. He emails exact Google Maps coordinates and directions after booking. Use his phrasing verbatim on the site, on slides and in the newsletter; do not paraphrase it.
+- Inbox processing is the weak link, not inbox delivery. `processed=1` only means a sweep touched the row. When auditing a missed event, check whether the row was marked processed — if it was, the failure is in the reading, not the plumbing.
 - Analytics: GoatCounter, site code "citykidbk". LL's own machine blocks goatcounter.com (ad-blocker/VPN) so she checks the dashboard on her phone. Chat apps strip referrers — suggest per-chat campaign links (e.g. `citykidbk.com/?utm_campaign=ditmas-moms`) when she shares.
 - The old Netlify project ("citykidbk", team lani-fqxd-u0) still exists but serves nothing; deleting it is optional housekeeping.
 - No spam protection on `/submit` yet (honeypot was removed with the Netlify form). Fine so far; add a honeypot field + worker check if junk appears.
