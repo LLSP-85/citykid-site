@@ -928,12 +928,37 @@ const SEP_OTHER = [
 ];
 const SEP_LIB = [
 ];
+/* OCTOBER — STAGED, NOT LAUNCHED. Bump MAX_MONTH to 9 (and nothing else) to launch.
+   Scaffolded Aug 18 2026 alongside the September build. Seeded with verified knowns only.
+   NOTE: Oct 1 2026 is a Thursday, so the grid should build 35 cells (4 leading blanks + 31 days).
+   SWEEP TODOs:
+   - Montague Open Streets (Brooklyn Heights) runs car-free SUNDAYS through Oct 25 — that's Oct 4, 11, 18, 25.
+     montaguebid.com confirms the season end date; it does NOT publish per-Sunday kids programming, so confirm
+     what actually runs before adding weekly rows. The Sep 13 Back to School Party is the season kickoff.
+   - Bay Ridge 5th Ave BID fall series: Coffee Crawl Sat Oct 3 (67-85 Sts) and 5th Avenue Fun Run Sat Oct 17
+     (65-85 Sts, 9:30 AM-12:30 PM) are on bayridgebid.com but NOT confirmed as kid programming — check before adding.
+   - Babies, Tunes & Brews @ TALEA Beer Co., Cobble Hill — Sun Oct 25, 11:30 AM-12:15 PM, $30/baby, ages "0-3".
+     NOT added: Cobble Hill is a far venue and LL has not ruled on whether it clears the bar. Needs a TALEA GEO pin
+     (61 Bergen St) and verification on babiestunesbrews.com. See citykid-pending-adds.
+   - BPL October listings (the events API posts roughly a month out — populate OCT_LIB from it in late September).
+   - All recurring Ditmas providers' fall schedules carry into October: CMP, Viva, Rikud, Little Makers, Cocoon,
+     Spot, ELC, Prospect Gymnastics. Whatever the September build verifies, extend here.
+   - SKATEYOGI Juniors Fall I series runs Sep 12-Nov 6 — LL's call on scope, see citykid-pending-adds.
+   - Halloween is the month's tentpole: expect a wave of parade/trunk-or-treat/pumpkin listings in early October.
+     Ditmas Park, PLG and Kensington all run their own; discover rather than assume. */
+const OCT_OTHER = [
+  {t:"Bay Ridge Halloween Fest", l:"Bay Ridge · Fifth Ave (72nd–85th Sts)", tm:"2:00–7:00 PM", c:"garden", a:"u5", ages:"All ages", cost:"Free", link:"https://www.bayridgebid.com/festival", note:"Free kids activities down thirteen car-free blocks of Fifth Ave: rides, trunk-or-treat, a puppet show, haunted trucks, a pumpkin patch and crafts, with music, restaurants and local shops alongside. Same organizers as September's FAMchella, one avenue further south.", d:[24]},
+  {t:"Storytime in the Park", l:"Fort Greene Park", tm:"11:00–11:45 AM", c:"garden", a:"u5", ages:"All ages / caregivers", cost:"Free", link:"https://www.fortgreenepark.org/calendar/storytime-in-the-park-081226", note:"Wednesday drop-in storytime with BPL librarians and live music from Urban Stages, at the bottom of the monument stairs in the park's northwest corner. Oct 14 is the last one of the season; wet-weather backup is the Walt Whitman branch library.", d:[7,14]}
+];
+const OCT_LIB = [
+];
 const MONTHS = {
   6:{ y:2026, name:'JULY',   other:JUL_OTHER, lib:JUL_LIB },
   7:{ y:2026, name:'AUGUST', other:AUG_OTHER, lib:AUG_LIB },
-  8:{ y:2026, name:'SEPTEMBER', other:SEP_OTHER, lib:SEP_LIB }
+  8:{ y:2026, name:'SEPTEMBER', other:SEP_OTHER, lib:SEP_LIB },
+  9:{ y:2026, name:'OCTOBER', other:OCT_OTHER, lib:OCT_LIB }
 };
-const MIN_MONTH=6, MAX_MONTH=7, MONABBR={6:'JUL',7:'AUG',8:'SEP'}; /* MAX_MONTH=8 launches September */
+const MIN_MONTH=6, MAX_MONTH=7, MONABBR={6:'JUL',7:'AUG',8:'SEP',9:'OCT'}; /* MAX_MONTH=8 launches September, 9 launches October */
 
 /* [substring matcher, lat, lng, Google Maps query] — order matters: specific names before generic ones. Pins are approximate. */
 const GEO = [
