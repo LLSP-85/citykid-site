@@ -21,18 +21,23 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (request.method === 'POST' && url.pathname === '/submit') {
-      let info = '';
+      let info = '', honeypot = '';
       try {
         const ct = request.headers.get('content-type') || '';
         if (ct.includes('json')) {
-          info = String((await request.json()).event_info || '');
+          const j = await request.json();
+          info = String(j.event_info || '');
+          honeypot = String(j.nickname || '');
         } else {
           const fd = await request.formData();
           info = String(fd.get('event_info') || '');
+          honeypot = String(fd.get('nickname') || '');
         }
       } catch (e) {
         return new Response('Bad request', { status: 400 });
       }
+      // Honeypot filled = bot. Pretend success, store nothing (same pattern as /subscribe).
+      if (honeypot.trim()) return Response.redirect(url.origin + '/?submitted=1', 303);
       info = info.slice(0, 10000);
       if (!info.trim()) return new Response('Empty submission', { status: 400 });
       await env.DB.prepare(
