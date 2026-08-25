@@ -958,9 +958,15 @@ const AUG_LIB = [
    Whitney's real Sep dates (skips BOTH Labor Day weekend Saturdays, not just "2nd Saturdays" — update the
    note when this launches); Green-Wood's two series; NY Transit Museum Creation Station; BCM's Brooklyn Circus.
    STILL OPEN, not added to this array — needs a follow-up check before launch:
-   - Cortelyou Music & Play: no Wednesday class (Toddler Junior Jam, Little Ukulele Jr Jam) appears on the
-     live Sep booking grid at all — may be paused for fall or just not yet released. Re-check before launch.
-     Caregiver & Me Violin Group (Sun 1:30pm) also doesn't appear in Sep — dropped from this build, not carried.
+   - Cortelyou Music & Play: fall toddler roster CONFIRMED + CORRECTED Aug 25 2026 from the owner's own
+     "Hello Fall, Goodbye Summer!" email (Aug 23) — toddler sessions were paused all of Sep 1–7, resuming
+     Sep 8. Full toddler grid: Mon 9:30/10:30/11:30 Toddler Social Hour; Tue 9:00 Tiny Music Moments,
+     9:45 Music Moments for Little Ones, 10:45/11:45 Toddler Social Hour; Wed 9:30/10:30/11:30 Toddler
+     Social Hour (Toddler Junior Jam Wed 10am doesn't start until Oct 7 — an October build item); Thu 10am
+     Children's Music from Around the World (moved off its old Tue/Fri slots); Fri 10am Songs & Stories,
+     11/12 Toddler Social Hour; Sat 10am Music Moments for Little Ones; Sun 10am Adventures with
+     Instruments, 11/12 Toddler Social Hour. Caregiver & Me Violin Group moved to the 4+ roster (Sun
+     1:30/2:30/3:30, ages 4+) — correctly stays off this toddler-only calendar.
    - Little Music Makers w/ Alyson @ Awesome Brooklyn (Tue 11:30 AM, $10) — no public schedule page exists
      (Instagram-only source, not automated); still unconfirmed for fall, deliberately NOT added.
    - Music Together Little Aster (Fit4Dance) — no fall semester announced yet on littleaster.com; not added.
@@ -983,9 +989,16 @@ const SEP_OTHER = [
   {t:"Parent & Tot Gymnastics (Fall Course)", l:"Prospect Gymnastics · Ditmas Park (1023 Church Ave)", tm:"Sat 3:00 & Sun 4:00 PM", c:"class", a:"u5", ages:"6 mo–4 yrs", cost:"See site for fall pricing", link:LNK.pg, note:"Multi-week fall course, weekend slots, starting mid-September. Also offered Tue 9 AM, Thu & Fri 11:15 AM.", d:[19,20,26,27]},
   {t:"Songs and Stories", l:"Cortelyou Music & Play · Ditmas Park (376 Argyle Rd)", tm:"10:00 AM", c:"music", a:"u5", ages:"6 mo–4 yrs", cost:"$30", link:LNK.cmp, note:"New Friday class starting Sep 11.", d:[11,18,25]},
   {t:"Toddler Social Hour", l:"Cortelyou Music & Play · Ditmas Park (376 Argyle Rd)", tm:"9:30, 10:30 & 11:30 AM", c:"class", a:"u5", ages:"1–3.5 yrs", cost:"$15", link:LNK.cmp, note:"Monday mornings — three back-to-back sessions, 60 min each. Replaces the summer's separate Toddler Social Play slot.", d:[14,21,28]},
-  {t:"Children's Music from Around the World", l:"Cortelyou Music & Play · Ditmas Park (376 Argyle Rd)", tm:"10:00 AM", c:"music", a:"u5", ages:"6 mo–4 yrs", cost:"$30", link:LNK.cmp, note:"Tuesday & Friday sessions continue into fall.", d:[1,4,8,11,15,18,22,25,29]},
-  {t:"Bao Bao Tales: Mandarin Storytime", l:"Cortelyou Music & Play · Ditmas Park (376 Argyle Rd)", tm:"10:00 AM", c:"class", a:"u5", ages:"2–6 yrs", cost:"$40", link:LNK.cmp, note:"Saturday language-immersion storytime with sensory play, continuing into fall.", d:[5,12,19,26]},
-  {t:"Adventures with Instruments", l:"Cortelyou Music & Play · Ditmas Park (376 Argyle Rd)", tm:"10:00 AM", c:"music", a:"u5", ages:"1–7 yrs", cost:"$30", link:LNK.cmp, note:"Sunday music class, continuing into fall.", d:[6,13,20,27]},
+  {t:"Tiny Music Moments", l:"Cortelyou Music & Play · Ditmas Park (376 Argyle Rd)", tm:"9:00–9:30 AM", c:"music", a:"u5", cost:"See site for pricing", link:LNK.cmp, note:"Tuesday morning music class for the youngest toddlers.", d:[8,15,22,29]},
+  {t:"Music Moments for Little Ones", l:"Cortelyou Music & Play · Ditmas Park (376 Argyle Rd)", tm:"9:45–10:30 AM", c:"music", a:"u5", ages:"6 mo–4 yrs", cost:"$30", link:LNK.cmp, note:"Tuesday session.", d:[8,15,22,29]},
+  {t:"Toddler Social Hour", l:"Cortelyou Music & Play · Ditmas Park (376 Argyle Rd)", tm:"10:45–11:45 AM & 11:45 AM–12:45 PM", c:"class", a:"u5", ages:"1–3.5 yrs", cost:"$15", link:LNK.cmp, note:"Tuesday — two back-to-back sessions.", d:[8,15,22,29]},
+  {t:"Toddler Social Hour", l:"Cortelyou Music & Play · Ditmas Park (376 Argyle Rd)", tm:"9:30, 10:30 & 11:30 AM", c:"class", a:"u5", ages:"1–3.5 yrs", cost:"$15", link:LNK.cmp, note:"Wednesday mornings — three back-to-back sessions, 60 min each.", d:[9,16,23,30]},
+  {t:"Children's Music from Around the World", l:"Cortelyou Music & Play · Ditmas Park (376 Argyle Rd)", tm:"10:00 AM", c:"music", a:"u5", ages:"6 mo–4 yrs", cost:"$30", link:LNK.cmp, note:"Thursday music class.", d:[10,17,24]},
+  {t:"Toddler Social Hour", l:"Cortelyou Music & Play · Ditmas Park (376 Argyle Rd)", tm:"11:00 AM–12:00 PM & 12:00–1:00 PM", c:"class", a:"u5", ages:"1–3.5 yrs", cost:"$15", link:LNK.cmp, note:"Friday — two back-to-back sessions, after Songs & Stories.", d:[11,18,25]},
+  {t:"Music Moments for Little Ones", l:"Cortelyou Music & Play · Ditmas Park (376 Argyle Rd)", tm:"10:00–10:45 AM", c:"music", a:"u5", ages:"6 mo–4 yrs", cost:"$30", link:LNK.cmp, note:"Saturday session.", d:[12,19,26]},
+  {t:"Bao Bao Tales: Mandarin Storytime", l:"Cortelyou Music & Play · Ditmas Park (376 Argyle Rd)", tm:"10:00 AM", c:"class", a:"u5", ages:"2–6 yrs", cost:"$40", link:LNK.cmp, note:"Saturday language-immersion storytime with sensory play, continuing into fall.", d:[12,19,26]},
+  {t:"Adventures with Instruments", l:"Cortelyou Music & Play · Ditmas Park (376 Argyle Rd)", tm:"10:00 AM", c:"music", a:"u5", ages:"1–7 yrs", cost:"$30", link:LNK.cmp, note:"Sunday music class, continuing into fall.", d:[13,20,27]},
+  {t:"Toddler Social Hour", l:"Cortelyou Music & Play · Ditmas Park (376 Argyle Rd)", tm:"11:00 AM–12:00 PM & 12:00–1:00 PM", c:"class", a:"u5", ages:"1–3.5 yrs", cost:"$15", link:LNK.cmp, note:"Sunday — two back-to-back sessions, after Adventures with Instruments.", d:[13,20,27]},
   {t:"Toddler Takeover at the Green-House", l:"Green-Wood Cemetery · Sunset Park (750 Fifth Ave)", tm:"10:00–11:30 AM", c:"garden", a:"u5", ages:"1–4 yrs", cost:"Free · register", link:LNK.gw, note:"Pop-up play zone at the Green-House with Park Slope Parents. Every other Tuesday; registration required (spots go fast).", d:[8,22]},
   {t:"Green-Wood on Wheels: Stroller-Friendly Tour", l:"Green-Wood Cemetery · Sunset Park (750 Fifth Ave)", tm:"10:30–11:30 AM", c:"garden", a:"u5", ages:"Parents & caregivers", cost:"Free · ticket required", link:"https://www.green-wood.com/series/green-wood-on-wheels-stroller-friendly-tour/", note:"Relaxed stroller-paced walking tour of the grounds — history, nature and fellow parents. With Park Slope Parents. Check in at the Green-House; one space per person, reserve ahead.", d:[2,16]},
   {t:"Play in the Square", l:"Domino Park · Domino Square · Williamsburg (300 Kent Ave)", tm:"12:00–3:00 PM", c:"garden", a:"u5", ages:"All ages", cost:"Free · RSVP", link:LNK.dmp, note:"Two Sundays a month — check Domino Park's site for that week's lineup. Greenmarket & the fountain are right there.", d:[13,27]},
