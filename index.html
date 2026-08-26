@@ -1271,8 +1271,8 @@ function parseTime(tm){
 function priceOf(e){ if(e.c==='lib') return 0; const c=(e.cost||''); if(/free/i.test(c)) return 0; const m=c.match(/\$(\d+)/); return m?+m[1]:null; }
 function isFree(e){ return priceOf(e)===0; }
 function isU25(e){ const p=priceOf(e); return p!==null && p>0 && p<=25; }
-const NBHD=[["Cortelyou Library","dp"],["Cortelyou · ","dp"],["Ditmas Park","dp"],["Flatbush Library","fb"],["Flatbush · ","fb"],["East Flatbush","fb"],["Clarendon","fb"],["Crown Heights Library","ch"],["Fit4Dance","fb"],["Prospect Lefferts","plg"],["Jaden Timoun","plg"],["Kensington","kn"],["Crown Heights","ch"],["Windsor Terrace","wt"],["Central Library","ps"],["Park Slope","ps"],["Prospect Heights","ps"],["Brooklyn Botanic","ps"],["Prospect Park","pp"],["Audubon","pp"],["Long Meadow","pp"],["Vanderbilt Playground","pp"],["Grand Army","pp"],["Moving Image","qns"]];
-const NBNAMES={dp:"Ditmas Park",fb:"Flatbush",kn:"Kensington",ch:"Crown Heights",plg:"PLG",wt:"Windsor Terrace",ps:"Park Slope & Prospect Hts",pp:"Prospect Park",mn:"Manhattan",qns:"Queens"};
+const NBHD=[["Cortelyou Library","dp"],["Cortelyou · ","dp"],["Ditmas Park","dp"],["Flatbush Library","fb"],["Flatbush · ","fb"],["East Flatbush","fb"],["Clarendon","fb"],["Crown Heights Library","ch"],["Fit4Dance","fb"],["Prospect Lefferts","plg"],["Jaden Timoun","plg"],["Kensington","kn"],["Crown Heights","ch"],["Windsor Terrace","wt"],["Central Library","ps"],["Park Slope","ps"],["Prospect Heights","ps"],["Brooklyn Botanic","ps"],["Prospect Park","pp"],["Audubon","pp"],["Long Meadow","pp"],["Vanderbilt Playground","pp"],["Grand Army","pp"],["Moving Image","qns"],[", Bronx","bx"]];
+const NBNAMES={dp:"Ditmas Park",fb:"Flatbush",kn:"Kensington",ch:"Crown Heights",plg:"PLG",wt:"Windsor Terrace",ps:"Park Slope & Prospect Hts",pp:"Prospect Park",mn:"Manhattan",qns:"Queens",bx:"Bronx"};
 function nbhdOf(e){ const l=String(e.l||''); for(let i=0;i<NBHD.length;i++){ if(l.indexOf(NBHD[i][0])>=0) return NBHD[i][1]; } return (e.b==='mn'||/manhattan|bryant park|central park|teardrop|lincoln center|whitney/i.test(l))?'mn':'bkx'; }
 function visible(ev){ if(state.venue&&venueSlug(ev.l)!==state.venue) return false; if(!state.cats[ev.c]) return false; if(state.mine&&!HEARTS.has(ev.id)) return false; const _nbs=Object.keys(state.nb).filter(function(k){return state.nb[k];}); if(_nbs.length&&_nbs.indexOf(nbhdOf(ev))<0) return false; if(state.cost==='free'&&!isFree(ev)) return false; if(state.cost==='u25'&&!isU25(ev)) return false; return true; }
 /* ---------- Venue view ----------
@@ -1499,7 +1499,7 @@ function seg(id,key){ document.getElementById(id).addEventListener('click', e=>{
 seg('costseg','cost'); seg('viewseg','view'); seg('calseg','cal');
 function buildNb(){
   const wrap=document.getElementById('nbchips'); if(!wrap) return;
-  const order=['dp','fb','kn','ch','plg','wt','ps','pp','bkx','mn','qns'];
+  const order=['dp','fb','kn','ch','plg','wt','ps','pp','bkx','mn','qns','bx'];
   const anyOn=Object.keys(state.nb).filter(function(k){return state.nb[k];}).length>0;
   let h='<button data-nb="all" class="'+(anyOn?'':'on')+'">'+S.all+'</button>';
   for(let i=0;i<order.length;i++){ const k=order[i]; const nm=(k==='bkx')?S.nbhdMore:NBNAMES[k]; h+='<button data-nb="'+k+'" class="'+(state.nb[k]?'on':'')+'">'+nm+'</button>'; }
