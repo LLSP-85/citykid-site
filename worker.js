@@ -82,6 +82,10 @@ export default {
         .run();
       return Response.redirect(url.origin + '/?subscribed=1', 303);
     }
+    // Neighborhood landing pages: citykidbk.com/parkslope -> /?nb=ps (Park Slope & Prospect Hts filter)
+    if (request.method === 'GET' && url.pathname === '/parkslope') {
+      return Response.redirect(url.origin + '/?nb=ps', 301);
+    }
     // Vanity campaign links: citykidbk.com/pp -> /?ref=pp
     // Any 1-4 letter/number path 302s home with a ref code GoatCounter logs as a campaign.
     // Static assets are served before this handler, so real files always win.
