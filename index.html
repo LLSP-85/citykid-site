@@ -1632,7 +1632,7 @@ function loadMonth(m){
   selected=(YEAR===REAL_Y&&MONTH===REAL_M&&REAL_D<=numDays)?REAL_D:1;
   const bm=document.getElementById('bigmonth'); if(bm){ bm.textContent=S.monthBig[m]; bm.style.fontSize=''; let fs=parseFloat(getComputedStyle(bm).fontSize); while(bm.scrollWidth>bm.clientWidth && fs>34){ fs-=2; bm.style.fontSize=fs+'px'; } }
   const ml=document.getElementById('mlabel'); if(ml) ml.textContent=mlabelTxt(MONTH,YEAR);
-  const other=(m===MIN_MONTH)?m+1:m-1; buildMini(other);
+  const other=(m<MAX_MONTH)?m+1:m-1; buildMini(other); /* mini-cal peeks FORWARD (next month) unless we're on the last launched month — fixed Sep 2 2026, it was showing AUG beside SEP */
   const mc=document.getElementById('minical'); if(mc) mc.onclick=()=>loadMonth(other);
   const pv=document.getElementById('prev'), nx=document.getElementById('next');
   if(pv) pv.disabled=(m<=MIN_MONTH);
