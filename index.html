@@ -237,6 +237,73 @@ window.ckCount=function(path,title){
   .sunbob{display:block; animation:sunbounce .5s ease-in-out infinite alternate;}
   @keyframes sunbounce{from{transform:translateY(0) rotate(-7deg);} to{transform:translateY(72px) rotate(9deg);}}
   @media (prefers-reduced-motion: reduce){ .sunride{display:none;} }
+  /* Fall refresh (post-Labor Day, added Sep 2 2026): flipped gradient + backpack/leaf/Q-train intro */
+  body.ckfall{background:linear-gradient(170deg,
+      #E9445A 0%, #FF7A2F 12%, #F7C93C 22%,
+      #2FB6A3 34%, #3D7BE8 44%,
+      #7C4DD6 52%, #F5303C 64%,
+      #FF6A2A 74%, #63C443 85%,
+      #35BE72 91%, #17AFC9 100%);}
+  .fallstage{position:fixed; inset:0; z-index:2000; pointer-events:none;}
+  @media (prefers-reduced-motion: reduce){ .fallstage{display:none;} }
+  @media (max-width:560px){ .fallstage{transform:scale(.68); transform-origin:0 0;} }
+  .ckf-bob{display:block; animation:ckfbob .55s ease-in-out infinite alternate;}
+  @keyframes ckfbob{from{transform:translateY(0);} to{transform:translateY(22px);}}
+  .ckf-sway{display:block; animation:ckfsway 1.05s ease-in-out .3s infinite alternate;}
+  @keyframes ckfsway{from{transform:translateX(-58px) rotate(-26deg);} to{transform:translateX(58px) rotate(24deg);}}
+  /* quick version (repeat loads): glide across, leaf slips out mid-flight */
+  .ckf-ride{position:absolute; top:12vh; left:0; animation:ckfacross 3.4s cubic-bezier(.3,.1,.6,1) .3s both;}
+  @keyframes ckfacross{0%{transform:translateX(-220px); opacity:1;} 80%{opacity:1;} 100%{transform:translateX(110vw); opacity:0;}}
+  .ckf-bob2{display:block; animation:ckfbob2 .55s ease-in-out infinite alternate;}
+  @keyframes ckfbob2{from{transform:translateY(0) rotate(-6deg);} to{transform:translateY(48px) rotate(7deg);}}
+  .ckf-leafq{position:absolute; top:12vh; left:44vw; animation:ckfleafq 4.2s cubic-bezier(.35,.1,.65,.9) 1.55s both;}
+  @keyframes ckfleafq{
+    0%{transform:translate(0,40px) scale(.12) rotate(30deg); opacity:0;}
+    10%{transform:translate(30px,-10px) scale(.3) rotate(-10deg); opacity:1;}
+    80%{transform:translate(20px,44vh) scale(1); opacity:1;}
+    90%{transform:translate(20px,47vh) scale(1); opacity:1;}
+    100%{transform:translate(20px,47vh) scale(1); opacity:0;}
+  }
+  /* full show (first load of the day): stop, unzip, tip, shake, leaf out, Q train pickup */
+  .ckf-ride3{position:absolute; top:9vh; left:0; animation:ckfacross3 8.2s cubic-bezier(.4,.1,.4,1) .3s both;}
+  @keyframes ckfacross3{
+    0%{transform:translateX(-220px) scale(1); opacity:1;}
+    20%{transform:translateX(30vw) scale(1);}
+    62%{transform:translateX(30vw) scale(1); opacity:1;}
+    66%{transform:translateX(calc(30vw - 16px)) translateY(8px) scale(.72); opacity:1;}
+    70%{transform:translateX(calc(30vw - 32px)) translateY(16px) scale(.32); opacity:0;}
+    100%{transform:translateX(calc(30vw - 32px)) scale(.32); opacity:0;}
+  }
+  .ckf-tip{display:block; transform-origin:50% 78%; animation:ckftip 8.2s .3s both;}
+  @keyframes ckftip{
+    0%,24%{transform:rotate(-4deg);}
+    29%{transform:rotate(52deg);}
+    32%{transform:rotate(40deg);}
+    35%{transform:rotate(56deg);}
+    38%{transform:rotate(42deg);}
+    41%{transform:rotate(54deg);}
+    46%{transform:rotate(0deg);}
+    100%{transform:rotate(0deg);}
+  }
+  .ckf-tip .ckf-zo{animation:ckfzo 8.2s .3s both;}
+  .ckf-tip .ckf-zc{animation:ckfzc 8.2s .3s both;}
+  @keyframes ckfzo{0%,23%{opacity:0;} 27%,46%{opacity:1;} 52%,100%{opacity:0;}}
+  @keyframes ckfzc{0%,23%{opacity:1;} 27%,46%{opacity:0;} 52%,100%{opacity:1;}}
+  .ckf-leaf3{position:absolute; top:9vh; left:30vw; animation:ckfleaf3 4.4s cubic-bezier(.35,.1,.65,.9) 3.05s both;}
+  @keyframes ckfleaf3{
+    0%{transform:translate(40px,60px) scale(.1) rotate(30deg); opacity:0;}
+    8%{transform:translate(175px,-14px) scale(.3) rotate(-10deg); opacity:1;}
+    14%{transform:translate(200px,6px) scale(.36) rotate(0deg);}
+    80%{transform:translate(188px,44vh) scale(1); opacity:1;}
+    90%{transform:translate(188px,47vh) scale(1); opacity:1;}
+    100%{transform:translate(188px,47vh) scale(1); opacity:0;}
+  }
+  .ckf-train{position:absolute; top:10.5vh; left:calc(30vw - 340px); animation:ckftrain 8.2s cubic-bezier(.5,.05,.5,1) .3s both;}
+  @keyframes ckftrain{0%,36%{transform:translateX(-90vw);} 50%{transform:translateX(0);} 76%{transform:translateX(0);} 90%{transform:translateX(90vw);} 100%{transform:translateX(175vw);}}
+  .ckf-train .ckf-dc{animation:ckfdc 8.2s .3s both;}
+  .ckf-train .ckf-do{animation:ckfdo 8.2s .3s both;}
+  @keyframes ckfdc{0%,53%{opacity:1;} 56%,73%{opacity:0;} 76%,100%{opacity:1;}}
+  @keyframes ckfdo{0%,53%{opacity:0;} 56%,73%{opacity:1;} 76%,100%{opacity:0;}}
   /* Mobile polish */
   @media(max-width:560px){
     .dots svg{width:18px; height:18px;}
@@ -268,34 +335,84 @@ window.ckCount=function(path,title){
   </svg>
 </div>
 <script>
-/* Seasonal intro rider: kawaii backpack takes over from the sun after Labor Day (Sep 8 2026 onward). */
+/* Fall rider (Sep 8 2026 onward): flipped gradient + green backpack intro.
+   First load of the day: full show — glide in, stop, unzip, tip & shake, leaf tumbles out
+   and grows as it falls, kawaii Q train pickup. Repeat loads: quick glide, leaf slips out
+   mid-flight. Sun keeps the job through Labor Day. */
 (function(){
   try{
     var now=new Date();
-    if(now < new Date(2026,8,8)) return; /* sun keeps the job through Labor Day */
+    if(now < new Date(2026,8,8)) return;
     var r=document.getElementById('sunride'); if(!r) return;
-    r.innerHTML='<svg class="sunbob" viewBox="0 0 120 120" width="150" height="150">'
-      +'<g stroke="#0F1015" stroke-width="3" stroke-linejoin="round">'
-      /* straps peeking out the sides */
-      +'<path d="M22 46 Q12 62 20 84" fill="none" stroke-width="7"/>'
-      +'<path d="M98 46 Q108 62 100 84" fill="none" stroke-width="7"/>'
-      /* top handle */
-      +'<path d="M46 22 Q60 8 74 22" fill="none" stroke-width="6"/>'
-      /* body */
-      +'<rect x="22" y="20" width="76" height="84" rx="20" fill="#F0433F"/>'
-      /* lid highlight */
-      +'<path d="M22 44 Q60 34 98 44 L98 40 Q60 22 22 40 Z" fill="#fff" opacity=".35" stroke="none"/>'
-      /* front pocket */
-      +'<rect x="34" y="56" width="52" height="40" rx="14" fill="#FFC93C"/>'
-      /* zipper */
-      +'<path d="M40 56 Q60 50 80 56" fill="none" stroke-width="2.5" stroke-dasharray="3 3"/>'
+    window.CK_FALL=true;
+    document.body.classList.add('ckfall');
+    function sparkle(x,y,sc){ return '<path transform="translate('+x+' '+y+') scale('+sc+')" d="M0 -1 L0.28 -0.28 L1 0 L0.28 0.28 L0 1 L-0.28 0.28 L-1 0 L-0.28 -0.28 Z"/>'; }
+    var BAG='<svg viewBox="-20 -46 160 172" width="150" height="161">'
+      +'<path d="M46 14 C20 -44 -26 6 26 88" fill="none" stroke="#0F1015" stroke-width="15" stroke-linecap="round"/>'
+      +'<path d="M46 14 C20 -44 -26 6 26 88" fill="none" stroke="#2C7F42" stroke-width="9" stroke-linecap="round"/>'
+      +'<path d="M74 14 C100 -44 146 6 94 88" fill="none" stroke="#0F1015" stroke-width="15" stroke-linecap="round"/>'
+      +'<path d="M74 14 C100 -44 146 6 94 88" fill="none" stroke="#2C7F42" stroke-width="9" stroke-linecap="round"/>'
+      +'<path d="M51 18 Q51 5 60 5 Q69 5 69 18" fill="none" stroke="#0F1015" stroke-width="5.5" stroke-linecap="round"/>'
+      +'<rect x="20" y="16" width="80" height="98" rx="20" fill="#3FAE5C" stroke="#0F1015" stroke-width="3"/>'
+      +'<g fill="#FFC93C" stroke="#0F1015" stroke-width="0.22" stroke-linejoin="round">'+sparkle(34,27,6)+sparkle(86,27,6)+sparkle(60,21,4.2)+'</g>'
+      +'<g fill="#fff" opacity=".8"><circle cx="46" cy="24" r="1.7"/><circle cx="74" cy="24" r="1.7"/><circle cx="24" cy="36" r="1.6"/><circle cx="96" cy="36" r="1.6"/></g>'
+      +'<g class="ckf-zc">'
+      +'<path d="M26 42 Q60 24 94 42" fill="none" stroke="#0F1015" stroke-width="2.5" stroke-dasharray="3 3"/>'
+      +'<path d="M27 43 L24 52" stroke="#0F1015" stroke-width="2.5" stroke-linecap="round"/>'
+      +'<rect x="21" y="51" width="6" height="10" rx="3" fill="#0F1015"/>'
       +'</g>'
-      /* face on the pocket */
-      +'<g fill="#0F1015"><circle cx="49" cy="72" r="3.4"/><circle cx="71" cy="72" r="3.4"/></g>'
-      +'<circle cx="50.4" cy="70.6" r="1.2" fill="#fff" opacity=".8"/><circle cx="72.4" cy="70.6" r="1.2" fill="#fff" opacity=".8"/>'
-      +'<path d="M53 80 Q60 87 67 80" stroke="#0F1015" stroke-width="3" fill="none" stroke-linecap="round"/>'
-      +'<circle cx="42" cy="79" r="3.6" fill="#FF8FA3" opacity=".7"/><circle cx="78" cy="79" r="3.6" fill="#FF8FA3" opacity=".7"/>'
+      +'<path d="M93 43 L96 52" stroke="#0F1015" stroke-width="2.5" stroke-linecap="round"/>'
+      +'<rect x="93" y="51" width="6" height="10" rx="3" fill="#0F1015"/>'
+      +'<g class="ckf-zo" opacity="0"><path d="M28 41 Q60 20 92 41 Q60 32 28 41 Z" fill="#0F1015"/></g>'
+      +'<g fill="#0F1015"><circle cx="45" cy="52" r="4.4"/><circle cx="75" cy="52" r="4.4"/></g>'
+      +'<circle cx="46.8" cy="50.2" r="1.8" fill="#fff" opacity=".85"/><circle cx="76.8" cy="50.2" r="1.8" fill="#fff" opacity=".85"/>'
+      +'<path d="M53 58 Q60 64 67 58" stroke="#0F1015" stroke-width="3" fill="none" stroke-linecap="round"/>'
+      +'<circle cx="36" cy="57" r="4" fill="#FF8FA3" opacity=".75"/><circle cx="84" cy="57" r="4" fill="#FF8FA3" opacity=".75"/>'
+      +'<rect x="28" y="66" width="64" height="44" rx="13" fill="#FFC93C" stroke="#0F1015" stroke-width="3"/>'
+      +'<path d="M33 74 Q60 62 87 74" fill="none" stroke="#0F1015" stroke-width="2.5" stroke-dasharray="3 3"/>'
+      +'<path d="M86 75 L89 82" stroke="#0F1015" stroke-width="2.5" stroke-linecap="round"/>'
+      +'<rect x="43" y="80" width="34" height="22" rx="3" fill="#ffffff" stroke="#0F1015" stroke-width="2.5"/>'
+      +'<text x="60" y="89.5" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="800" font-size="8" letter-spacing="1" fill="#0F1015">CITY</text>'
+      +'<text x="60" y="98.5" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="800" font-size="8" letter-spacing="1.5" fill="#0F1015">KID</text>'
       +'</svg>';
+    var LEAF='<svg viewBox="0 0 120 130" width="118" height="128">'
+      +'<path d="M60 6 L70 32 L94 22 L82 50 L112 56 L84 68 L94 94 L68 82 L60 88 L52 82 L26 94 L36 68 L8 56 L38 50 L26 22 L50 32 Z" fill="#F28C28" stroke="#0F1015" stroke-width="3" stroke-linejoin="round"/>'
+      +'<path d="M60 88 L60 118 Q60 124 66 124" fill="none" stroke="#0F1015" stroke-width="4.5" stroke-linecap="round"/>'
+      +'<g fill="#0F1015"><rect x="42" y="48" width="14" height="10" rx="4"/><rect x="64" y="48" width="14" height="10" rx="4"/></g>'
+      +'<circle cx="46" cy="51" r="1.6" fill="#fff" opacity=".8"/><circle cx="68" cy="51" r="1.6" fill="#fff" opacity=".8"/>'
+      +'<path d="M51 66 Q60 74 69 66" stroke="#0F1015" stroke-width="3" fill="none" stroke-linecap="round"/>'
+      +'<circle cx="40" cy="63" r="3.4" fill="#FF8FA3" opacity=".7"/><circle cx="80" cy="63" r="3.4" fill="#FF8FA3" opacity=".7"/>'
+      +'</svg>';
+    var TRAIN='<svg viewBox="0 0 480 170" width="480" height="170">'
+      +'<rect x="14" y="124" width="452" height="12" rx="4" fill="#2A2D33"/>'
+      +'<g fill="#2A2D33" stroke="#0F1015" stroke-width="2.5"><circle cx="70" cy="148" r="14"/><circle cx="130" cy="148" r="14"/><circle cx="350" cy="148" r="14"/><circle cx="410" cy="148" r="14"/></g>'
+      +'<g fill="#6B7280"><circle cx="70" cy="148" r="5"/><circle cx="130" cy="148" r="5"/><circle cx="350" cy="148" r="5"/><circle cx="410" cy="148" r="5"/></g>'
+      +'<rect x="4" y="16" width="472" height="112" rx="16" fill="#C9CED6" stroke="#0F1015" stroke-width="3"/>'
+      +'<rect x="8" y="110" width="464" height="8" fill="#FCCC0A" stroke="#0F1015" stroke-width="1.5"/>'
+      +'<g fill="#1E2530" stroke="#0F1015" stroke-width="2.5"><rect x="28" y="36" width="58" height="32" rx="8"/><rect x="102" y="36" width="58" height="32" rx="8"/><rect x="176" y="36" width="58" height="32" rx="8"/><rect x="424" y="36" width="36" height="32" rx="8"/></g>'
+      +'<circle cx="272" cy="88" r="24" fill="#FCCC0A" stroke="#0F1015" stroke-width="3"/>'
+      +'<text x="272" y="98" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="800" font-size="27" fill="#0F1015">Q</text>'
+      +'<g class="ckf-dc"><g fill="#AEB6C2" stroke="#0F1015" stroke-width="2.5"><rect x="350" y="34" width="28" height="90" rx="4"/><rect x="382" y="34" width="28" height="90" rx="4"/></g><rect x="356" y="42" width="16" height="26" rx="4" fill="#1E2530"/><rect x="388" y="42" width="16" height="26" rx="4" fill="#1E2530"/></g>'
+      +'<g class="ckf-do" opacity="0"><rect x="350" y="34" width="60" height="90" rx="6" fill="#0F1015"/></g>'
+      +'<g fill="#0F1015"><circle cx="434" cy="84" r="3.6"/><circle cx="456" cy="84" r="3.6"/></g>'
+      +'<circle cx="435.4" cy="82.6" r="1.4" fill="#fff" opacity=".85"/><circle cx="457.4" cy="82.6" r="1.4" fill="#fff" opacity=".85"/>'
+      +'<path d="M438 92 Q445 98 452 92" stroke="#0F1015" stroke-width="2.5" fill="none" stroke-linecap="round"/>'
+      +'<circle cx="427" cy="91" r="3" fill="#FF8FA3" opacity=".7"/><circle cx="463" cy="91" r="3" fill="#FF8FA3" opacity=".7"/>'
+      +'<circle cx="468" cy="102" r="5" fill="#FCCC0A" stroke="#0F1015" stroke-width="2"/>'
+      +'</svg>';
+    var today=now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate();
+    var seen=null; try{ seen=localStorage.getItem('ck_fall_intro'); }catch(e){}
+    var full=(seen!==today);
+    if(full){ try{ localStorage.setItem('ck_fall_intro',today); }catch(e){} }
+    r.className='fallstage';
+    if(full){
+      r.innerHTML='<div class="ckf-train">'+TRAIN+'</div>'
+        +'<div class="ckf-leaf3"><span class="ckf-sway">'+LEAF+'</span></div>'
+        +'<div class="ckf-ride3"><span class="ckf-bob"><span class="ckf-tip">'+BAG+'</span></span></div>';
+    } else {
+      r.innerHTML='<div class="ckf-ride"><span class="ckf-bob2">'+BAG+'</span></div>'
+        +'<div class="ckf-leafq"><span class="ckf-sway">'+LEAF+'</span></div>';
+    }
   }catch(e){/* the intro must never break the calendar */}
 })();
 </script>
@@ -1785,6 +1902,12 @@ document.addEventListener('click', function(ev){
 const sun=document.getElementById('sunride');
 if(sun) sun.addEventListener('animationend', function(ev){ if(ev.animationName==='sunacross') sun.remove(); });
 
+if(window.CK_FALL){ try{
+  I18N.en.tagline='Toddler Classes &amp; Events &#183; Fall in NYC is the Best!!';
+  I18N.ht.tagline='Klas ak Aktivite pou Timoun Piti &#183; Lot\u00f2n nan NYC pa gen par\u00e8y!!';
+  I18N.bn.tagline='\u099b\u09cb\u099f\u09a6\u09c7\u09b0 \u0995\u09cd\u09b2\u09be\u09b8 \u0993 \u0987\u09ad\u09c7\u09a8\u09cd\u099f &#183; \u09a8\u09bf\u0989 \u0987\u09af\u09bc\u09b0\u09cd\u0995\u09c7\u09b0 \u09b6\u09b0\u09ce \u09b8\u09c7\u09b0\u09be!!';
+  I18N.es.tagline='Clases y Eventos para Peques &#183; \u00a1\u00a1El oto\u00f1o en NYC es lo mejor!!';
+}catch(e){} }
 applyLang();
 /* open on the real month whenever it's launched (was MIN-or-MAX only, which opened late-August visitors on July once September launched) */
 const startMonth=(REAL_Y===2026&&REAL_M>=MIN_MONTH&&REAL_M<=MAX_MONTH)?REAL_M:MIN_MONTH;
