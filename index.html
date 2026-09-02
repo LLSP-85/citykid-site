@@ -1249,6 +1249,9 @@ const SEP_OTHER = [
   /* Added Sep 1 2026 — Make Chem Possible fall lineup (venue flyer via LL) */
   {t:"Parents & Protons (sensory science)", l:"Make Chem Possible · Ditmas Park (1209 Cortelyou Rd)", tm:"9:00–9:45 AM", c:"class", a:"u5", ages:"Ages 1–4", cost:"See site for pricing", link:"https://www.makechempossible.com/", note:"MCP's 'hands-on science class for little ones': 'Parents and their protons can explore and bond over sensory science experiments and crafts!' Fall Monday dates: Sep 14, Oct 5, Oct 26, Nov 9. Book at makechempossible.com or 518-418-0073.", d:[14]},
   {t:"Fall Pop-Up Camp (DOE holiday)", l:"Make Chem Possible · Ditmas Park (1209 Cortelyou Rd)", tm:"8:30 AM–3:00 PM (ext. til 5:00 PM)", c:"class", a:"u5", ages:"See site", cost:"See site for pricing", link:"https://www.makechempossible.com/", note:"School's out for Yom Kippur — MCP runs one of its 'DOE Holiday day camps for tons of creativity, discovery, and science fun!' Also Oct 12 and Nov 11.", d:[21]},
+  /* Added Sep 1 2026 — The Craft Salon (new Kensington/Ditmas venue via LL's listserv find; details verified on Sawyer) */
+  {t:"Toddler Time (art + sensory play)", l:"The Craft Salon · Kensington/Ditmas Park (1101 Church Ave, first floor)", tm:"10:00–10:45 AM", c:"class", a:"u5", ages:"1.5–3 yrs", cost:"$180/6-week session", link:"https://www.hisawyer.com/the-craft-salon-studio/schedules", note:"Tuesdays (Sep 15–Oct 20) & Thursdays (Sep 17–Oct 22) at the Church Ave studio. Art + sensory play for the youngest makers; register on Sawyer.", d:[15,17,22,24,29]},
+  {t:"Saturday Clay Play", l:"The Craft Salon · Kensington/Ditmas Park (1101 Church Ave, first floor)", tm:"11:00 AM–1:30 PM", c:"class", a:"u5", ages:"Kids + grownups (all ages)", cost:"$40/class drop-in", link:"https://www.hisawyer.com/the-craft-salon-studio/schedules", note:"'Come explore clay with your little (or big!) offspring!' Ongoing Saturdays through Dec 19; drop in on Sawyer.", d:[5,12,19,26]},
 ];
 const SEP_LIB = [
 ["Lavender Blues: Early Enrichment Through Music and Movement","Brower Park Library · Crown Heights (155 Brooklyn Ave)","10:30 AM","u5",0,0,"3,10,17,24","Early Enrichment Through Music and Movement — Thursdays at Brower Park Library with Lavender Blues.","https://linktr.ee/lavenderbluesmusic"],
@@ -1318,7 +1321,10 @@ const OCT_OTHER = [
   {t:"Parents & Protons (sensory science)", l:"Make Chem Possible · Ditmas Park (1209 Cortelyou Rd)", tm:"9:00–9:45 AM", c:"class", a:"u5", ages:"Ages 1–4", cost:"See site for pricing", link:"https://www.makechempossible.com/", note:"'Parents and their protons can explore and bond over sensory science experiments and crafts!' Mondays Oct 5 & 26 (then Nov 9).", d:[5,26]},
   {t:"Pumpkin Explosion Party", l:"Make Chem Possible · Ditmas Park (1209 Cortelyou Rd)", tm:"10:00 AM–3:00 PM", c:"class", a:"u5", ages:"All ages", cost:"See site for pricing", link:"https://www.makechempossible.com/", note:"MCP's 'second annual pumpkin explosion party! Join us for spooky, oozing explosions as we bring the magic of science to the halloween season!'", d:[10]},
   {t:"Kids Night Out at MCP", l:"Make Chem Possible · Ditmas Park (1209 Cortelyou Rd)", tm:"6:00–8:00 PM", c:"class", a:"u5", ages:"See site", cost:"See site for pricing", link:"https://www.makechempossible.com/", note:"'It's a kids night out at MCP! Join us for a Glow-in-the-dark face painting, popcorn making movie night!'", d:[23]},
-  {t:"Fall Pop-Up Camp (DOE holiday)", l:"Make Chem Possible · Ditmas Park (1209 Cortelyou Rd)", tm:"8:30 AM–3:00 PM (ext. til 5:00 PM)", c:"class", a:"u5", ages:"See site", cost:"See site for pricing", link:"https://www.makechempossible.com/", note:"Indigenous Peoples Day school closure — one of MCP's 'DOE Holiday day camps for tons of creativity, discovery, and science fun!'", d:[12]}
+  {t:"Fall Pop-Up Camp (DOE holiday)", l:"Make Chem Possible · Ditmas Park (1209 Cortelyou Rd)", tm:"8:30 AM–3:00 PM (ext. til 5:00 PM)", c:"class", a:"u5", ages:"See site", cost:"See site for pricing", link:"https://www.makechempossible.com/", note:"Indigenous Peoples Day school closure — one of MCP's 'DOE Holiday day camps for tons of creativity, discovery, and science fun!'", d:[12]},
+  /* The Craft Salon (sessions run into October / Clay Play through Dec 19) */
+  {t:"Toddler Time (art + sensory play)", l:"The Craft Salon · Kensington/Ditmas Park (1101 Church Ave, first floor)", tm:"10:00–10:45 AM", c:"class", a:"u5", ages:"1.5–3 yrs", cost:"$180/6-week session", link:"https://www.hisawyer.com/the-craft-salon-studio/schedules", note:"Tuesdays through Oct 20 & Thursdays through Oct 22.", d:[1,6,8,13,15,20,22]},
+  {t:"Saturday Clay Play", l:"The Craft Salon · Kensington/Ditmas Park (1101 Church Ave, first floor)", tm:"11:00 AM–1:30 PM", c:"class", a:"u5", ages:"Kids + grownups (all ages)", cost:"$40/class drop-in", link:"https://www.hisawyer.com/the-craft-salon-studio/schedules", note:"'Come explore clay with your little (or big!) offspring!' Ongoing Saturdays through Dec 19.", d:[3,10,17,24,31]}
 ];
 const OCT_LIB = [
 ];
@@ -1362,6 +1368,7 @@ const GEO = [
   ["John Hancock Playground", 40.683375, -73.944359, "John Hancock Playground, Hancock St between Bedford & Nostrand Aves, Brooklyn NY 11216"],
   ["412 Church Ave", 40.643959, -73.976246, "Blitz Dojo, 412 Church Ave Brooklyn NY 11218"],
   ["1027 Cortelyou Rd", 40.639709, -73.968312, "Blitz Dojo, 1027 Cortelyou Rd (2nd floor) Brooklyn NY 11218"],
+  ["1101 Church Ave", 40.647282, -73.969219, "The Craft Salon, 1101 Church Ave (first floor) Brooklyn NY 11218"],
   ["58 Garfield Pl", 40.674644, -73.982398, "Wise Wonder Enrichment, 58 Garfield Pl Brooklyn NY 11215"],
   ["140 7th Ave", 40.672913, -73.976972, "da Nonna Rosa, 140 7th Ave Brooklyn NY 11215"],
   ["612 Greenwood Ave", 40.651334, -73.975189, "PS 130, 612 Greenwood Ave Brooklyn NY 11218"],
