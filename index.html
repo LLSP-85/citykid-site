@@ -1662,6 +1662,21 @@ function buildMini(m){
    computed once instead of in a reflow loop. Do not add Bengali here.
 
    letter-spacing on .m1 must stay 0 or the canvas measurement below drifts. */
+/* Two governors, both tuned against real Chango metrics on the live site (Sep 8 2026):
+
+   SPLIT_MAX  ceiling for a stacked line. Two lines at the full 180px desktop cap
+              made a 295px-tall month block against JULY's 171px, so the masthead
+              lurched every time you changed month. 135 puts every stacked month
+              at the same size and holds the swing to about 50px. On a phone the
+              cap is already 78 so this never binds, which is the point: mobile
+              keeps the full-size stack, desktop does not balloon.
+
+   SPLIT_GAIN stack only if it buys at least 15% more letter size than one line.
+              Measured desktop: AUGUST is 128px on one line and 135px stacked, so
+              AUG/UST is not worth a second line and it stays put. On a phone the
+              same word is 62px vs 78px, so there it does stack. The rule reads
+              the width it is actually given rather than guessing per breakpoint. */
+const SPLIT_MAX=135, SPLIT_GAIN=1.15;
 const MONTH_SPLIT={
   /* English */
   'JANUARY':['JAN','UARY'], 'FEBRUARY':['FEB','RUARY'], 'AUGUST':['AUG','UST'],
@@ -1706,20 +1721,22 @@ function _fitBigMonth(bm,m){
   if(mini&&mini.offsetParent!==null) box-=(mini.offsetWidth+20);   /* offsetParent is null once the 640px query hides it */
   box=Math.max(120,box)*0.99;                             /* hair of slack against rounding */
   const unit=_mfUnit(word,fam);
-  const one=unit>0?box/unit:cap;
-  if(one>=cap){                                           /* short month: nothing to fix */
-    bm.classList.remove('split'); bm.textContent=word; return;
-  }
+  const one=unit>0?Math.min(cap,box/unit):cap;            /* best one-line size */
   const parts=MONTH_SPLIT[word];
-  if(!parts){                                             /* Bengali and anything unmapped */
-    bm.classList.remove('split'); bm.textContent=word;
-    bm.style.fontSize=Math.max(34,Math.floor(one))+'px'; return;
+  let two=0;
+  if(parts&&unit>0){
+    const widest=Math.max(_mfUnit(parts[0],fam),_mfUnit(parts[1],fam));
+    if(widest>0) two=Math.min(cap, SPLIT_MAX, box/widest);
   }
-  const widest=Math.max(_mfUnit(parts[0],fam),_mfUnit(parts[1],fam));
-  bm.classList.add('split');
-  bm.textContent='';
-  parts.forEach(function(t){ const s=document.createElement('span'); s.className='mln'; s.textContent=t; bm.appendChild(s); });
-  bm.style.fontSize=Math.floor(Math.min(cap, widest>0?box/widest:cap))+'px';
+  if(two>=one*SPLIT_GAIN){                                /* stacking is worth it */
+    bm.classList.add('split');
+    bm.textContent='';
+    parts.forEach(function(t){ const s=document.createElement('span'); s.className='mln'; s.textContent=t; bm.appendChild(s); });
+    bm.style.fontSize=Math.floor(two)+'px';
+    return;
+  }
+  bm.classList.remove('split'); bm.textContent=word;      /* one line: short months, Bengali, and anything stacking would not help */
+  if(one<cap) bm.style.fontSize=Math.max(34,Math.floor(one))+'px';
 }
 /* Chango arrives after first paint, and the fallback measures narrower, so size again once it lands */
 if(document.fonts&&document.fonts.ready){
