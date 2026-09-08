@@ -1492,7 +1492,13 @@ const GEO = [
   ["Lofty Pigeon", 40.6438, -73.9787, "Lofty Pigeon Books Brooklyn"],
   ["Cortelyou Music & Play", 40.64012, -73.96619, "376 Argyle Rd Brooklyn NY 11218"],
   ["Lena Horne Bandshell", 40.6620, -73.9760, "Lena Horne Bandshell, Prospect Park West & 9th St, Brooklyn NY 11215"],
-  // Hand-placed: Concert Grove / Lincoln statue area near the Lincoln Rd & Ocean Ave entrance — not an addressable location.
+  /* Hand-placed: Concert Grove / Lincoln statue area near the Lincoln Rd & Ocean Ave entrance — not an addressable location.
+     "Concert Grove" is the primary matcher because geo() is case-sensitive (plain indexOf): The Nightingale Fam writes
+     "Lincoln Statue" and Music with Miles writes "Lincoln statue", so the capital-S row fell through and lost its pin
+     (found Sep 8 2026). Every one of these strings carries "Concert Grove", so match on that. The lowercase row stays
+     below as a backstop for any string that names the statue without the grove. Both must sit ABOVE the other
+     Prospect Park rows. */
+  ["Concert Grove", 40.6601, -73.9646, "Prospect Park Concert Grove, near Lincoln Rd & Ocean Ave entrance"],
   ["Lincoln statue", 40.6601, -73.9646, "Prospect Park Concert Grove, near Lincoln Rd & Ocean Ave entrance"],
   ["Prospect Park Zoo", 40.6653, -73.9648, "Prospect Park Zoo"],
   ["Viva Art Studio", 40.63517, -73.96391, "1416 Newkirk Ave Brooklyn NY 11226"],
@@ -1575,6 +1581,12 @@ const GEO = [
   ["1423 Albemarle", 40.646922, -73.965771, "1423 Albemarle Rd Brooklyn NY 11226"],
   ["1115 Dorchester", 40.638108, -73.966991, "1115 Dorchester Rd Brooklyn NY 11226"],
   ["121 Buckingham", 40.6477, -73.9642, "121 Buckingham Rd Brooklyn NY 11226 (approx — exact house number not in NYC address database, interpolated between 111 & 125)"],
+  ["284 E 16th", 40.643536, -73.964143, "284 East 16th St Brooklyn NY 11226"],
+  /* Hand-placed, deliberately approximate: this Operation Gig show has no address yet (it goes up a day or two before
+     the date on @operation_gig). Pinned to the centroid of the five known porch addresses so the show still appears on
+     the map, and the listing note already tells people the address is coming. The matcher is the TBA phrase itself,
+     which only this row can carry. When the real address lands, replace BOTH the l string and this row. */
+  ["address TBA, watch @operation_gig", 40.6445, -73.9653, "Ditmas Park (exact porch address not yet announced)"],
   ["870 Ocean", 40.641072, -73.959683, "870 Ocean Ave Brooklyn NY 11226"],
   ["448 Rogers", 40.661625, -73.953883, "448 Rogers Ave Brooklyn NY 11225"],
   ["Jaden Timoun", 40.6595, -73.9575, "Prospect Lefferts Gardens Brooklyn"],
