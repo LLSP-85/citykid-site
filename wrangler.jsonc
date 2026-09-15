@@ -1,5 +1,11 @@
 // Cloudflare Workers config for citykidbk.com
 // Deployed automatically by Cloudflare Workers Builds when this repo is pushed.
+//
+// Two environments share this file:
+//   production  -> `npx wrangler deploy`           Worker hidden-term-82d3, citykidbk.com, D1 citykid-inbox
+//   qa          -> `npx wrangler deploy --env qa`  Worker citykid-qa, qa1.citykidbk.com, D1 citykid-inbox-qa
+// Bindings, routes and vars are NOT inherited into named envs, so env.qa redeclares them.
+// See docs/QA_ENVIRONMENT.md.
 {
   "name": "hidden-term-82d3",
   "main": "worker.js",
@@ -12,11 +18,32 @@
     { "pattern": "citykidbk.com/*", "zone_name": "citykidbk.com" },
     { "pattern": "www.citykidbk.com/*", "zone_name": "citykidbk.com" }
   ],
+  "vars": {
+    "CK_ENV": "production"
+  },
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "citykid-inbox",
       "database_id": "0d66722d-98a5-4e32-a11e-2eefad14a703"
     }
-  ]
+  ],
+  "env": {
+    "qa": {
+      "name": "citykid-qa",
+      "routes": [
+        { "pattern": "qa1.citykidbk.com", "custom_domain": true }
+      ],
+      "vars": {
+        "CK_ENV": "qa"
+      },
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "citykid-inbox-qa",
+          "database_id": "2bd5ea57-7421-4274-b0ff-9429a1c5105a"
+        }
+      ]
+    }
+  }
 }

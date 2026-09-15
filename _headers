@@ -1,0 +1,4 @@
+# Served by Workers static assets. Keeps the QA copy of the site out of search engines.
+# Cloudflare Access in front of qa1 is the real gate; this is belt and suspenders.
+https://qa1.citykidbk.com/*
+  X-Robots-Tag: noindex, nofollow
